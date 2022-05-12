@@ -1,5 +1,7 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import Header from "../components/Header/Header";
+import { ColorSchemeProvider } from "../contexts/ColorScheme";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -8,7 +10,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>Rohid</title>
       </Head>
-      <Component {...pageProps} />
+      <ColorSchemeProvider>
+        <Header />
+        <Component {...pageProps} />
+      </ColorSchemeProvider>
     </>
   );
 }
