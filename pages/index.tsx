@@ -33,112 +33,112 @@ const Home: NextPage = () => {
       </section>
 
       <section id="featured-posts">
-        <div className="mx-auto max-w-screen-lg px-4">
-          <div className="mb-6 flex items-center gap-4">
-            <h2 className="flex-1 text-2xl font-medium">Featured Posts</h2>
-            <Link href="/blog">
-              <a className="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">
-                <span>All Posts</span>
-                <MdChevronRight className="text-2xl" />
-              </a>
-            </Link>
-          </div>
-          <div className="grid grid-cols-3 gap-6">
+        <div className="mx-auto mb-2 flex max-w-screen-lg items-center gap-4 px-4">
+          <h2 className="flex-1 text-2xl font-medium">Featured Posts</h2>
+          <Link href="/blog">
+            <a className="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">
+              <span>All Posts</span>
+              <MdChevronRight className="text-2xl" />
+            </a>
+          </Link>
+        </div>
+
+        <div className="mx-auto max-w-screen-lg overflow-x-auto">
+          <div className="grid grid-flow-col py-4 pl-4">
             {[1, 2, 3].map((item) => (
-              <article
-                key={item}
-                className="relative flex flex-col gap-4 rounded-xl bg-white p-4 shadow-md ring-1 ring-gray-200 hover:shadow-lg dark:bg-gray-700 dark:shadow-none dark:ring-0 dark:ring-gray-600 dark:hover:ring-1"
-              >
-                <Link href={`/`}>
-                  <a className="absolute inset-0 rounded-xl" />
-                </Link>
+              <div key={item} className="pr-4">
+                <article className="relative flex min-w-[300px] flex-col gap-4 rounded-xl bg-white p-4 shadow-md ring-1 ring-gray-200 hover:ring-gray-300 dark:bg-gray-800 dark:ring-gray-700 dark:hover:ring-gray-600">
+                  <Link href={`/`}>
+                    <a className="absolute inset-0 rounded-xl" />
+                  </Link>
 
-                <h3 className="text-xl font-medium">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Et,
-                  impedit.
-                </h3>
+                  <h3 className="text-xl font-medium">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et,
+                    impedit.
+                  </h3>
 
-                <div className="flex items-center gap-4 text-gray-600 dark:text-gray-300">
-                  <p className="flex-1">June 1, 2020</p>
-                  <div className="flex items-center gap-2">
-                    <MdVisibility className="text-xl" />
-                    <span>31,456</span>
+                  <div className="flex items-center gap-4 text-gray-600 dark:text-gray-300">
+                    <p className="flex-1">June 1, 2020</p>
+                    <div className="flex items-center gap-2">
+                      <MdVisibility className="text-xl" />
+                      <span>31,456</span>
+                    </div>
                   </div>
-                </div>
-              </article>
+                </article>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       <section id="featured-projects">
-        <div className="mx-auto max-w-screen-lg px-4">
-          <div className="mb-6 flex items-center gap-4">
-            <h2 className="flex-1 text-2xl font-medium">Featured Projects</h2>
-            <Link href="/projects">
-              <a className="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">
-                <span>All Projects</span>
-                <MdChevronRight className="text-2xl" />
-              </a>
-            </Link>
-          </div>
-          <div className="grid grid-cols-3 gap-6">
+        <div className="mx-auto mb-2 flex max-w-screen-lg items-center gap-4 px-4">
+          <h2 className="flex-1 text-2xl font-medium">Featured Projects</h2>
+          <Link href="/projects">
+            <a className="flex items-center gap-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100">
+              <span>All Projects</span>
+              <MdChevronRight className="text-2xl" />
+            </a>
+          </Link>
+        </div>
+
+        <div className="mx-auto max-w-screen-lg overflow-x-auto">
+          <div className="grid grid-flow-col py-4 pl-4">
             {[1, 2, 3].map((item) => (
-              <article
-                key={item}
-                className="relative flex flex-col gap-4 rounded-xl bg-white py-4 px-2 shadow-md ring-1 ring-gray-200 hover:shadow-lg dark:bg-gray-700 dark:shadow-none dark:ring-0 dark:ring-gray-600 dark:hover:ring-1"
-              >
-                <Link href={`/`}>
-                  <a className="absolute inset-0 rounded-xl" />
-                </Link>
+              <div className="pr-4" key={item}>
+                <article className="relative flex min-w-[300px] flex-col gap-4 rounded-xl bg-white py-4 px-2 shadow-md ring-1 ring-gray-200 hover:ring-gray-300 dark:bg-gray-800 dark:ring-gray-700 dark:hover:ring-gray-600">
+                  <Link href={`/`}>
+                    <a className="absolute inset-0 rounded-xl" />
+                  </Link>
 
-                <h3 className="px-2 text-xl font-medium">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Et,
-                  impedit.
-                </h3>
+                  <h3 className="px-2 text-xl font-medium">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et,
+                    impedit.
+                  </h3>
 
-                <div className="pointer-events-none relative aspect-[3/2] w-full overflow-hidden rounded-2xl">
-                  <Image
-                    src={`/images/project-photo-02.jpg`}
-                    alt="Project"
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </div>
-
-                <div className="flex items-center gap-4 px-2 text-gray-600 dark:text-gray-300">
-                  <ul className="flex flex-1 flex-wrap items-center gap-2">
-                    {[
-                      {
-                        id: "react",
-                        name: "React",
-                      },
-                      {
-                        id: "typescript",
-                        name: "TypeScript",
-                      },
-                    ].map(({ id, name }) => (
-                      <li key={id}>
-                        <Link href={`/tags/${id}`}>
-                          <a className="relative z-10 inline-block rounded bg-gray-100 px-2 py-1 text-sm hover:text-gray-900 dark:bg-gray-600 dark:hover:text-gray-100">
-                            {name}
-                          </a>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="flex items-center gap-2">
-                    <MdStar className="text-xl" />
-                    <span>31,456</span>
+                  <div className="pointer-events-none relative aspect-[3/2] w-full overflow-hidden rounded-2xl">
+                    <Image
+                      src={`/images/project-photo-02.jpg`}
+                      alt="Project"
+                      layout="fill"
+                      objectFit="cover"
+                    />
                   </div>
-                </div>
-              </article>
+
+                  <div className="flex items-center gap-4 px-2 text-gray-600 dark:text-gray-300">
+                    <ul className="flex flex-1 flex-wrap items-center gap-2">
+                      {[
+                        {
+                          id: "react",
+                          name: "React",
+                        },
+                        {
+                          id: "typescript",
+                          name: "TypeScript",
+                        },
+                      ].map(({ id, name }) => (
+                        <li key={id}>
+                          <Link href={`/tags/${id}`}>
+                            <a className="relative z-10 inline-block rounded-md bg-gray-100 px-2 py-1 text-sm hover:text-gray-900 dark:bg-gray-700 dark:hover:text-gray-100">
+                              {name}
+                            </a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex items-center gap-2">
+                      <MdStar className="text-xl" />
+                      <span>31,456</span>
+                    </div>
+                  </div>
+                </article>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <div className="mx-auto flex w-full max-w-screen-lg gap-6 px-4">
+      <div className="mx-auto flex w-full max-w-screen-lg flex-col gap-16 px-4 md:flex-row md:gap-4">
         <div className="flex-1">
           <section id="recent-posts">
             <div className="mb-6 flex items-center gap-4">
@@ -186,7 +186,7 @@ const Home: NextPage = () => {
           </section>
         </div>
 
-        <div className="w-full max-w-xs space-y-16">
+        <div className="w-full space-y-16 md:max-w-[260px] lg:max-w-[320px]">
           <section id="categories">
             <div className="mb-6 flex items-center gap-4">
               <h2 className="flex-1 text-2xl font-medium">Categories</h2>
@@ -220,7 +220,7 @@ const Home: NextPage = () => {
               ].map(({ id, name }) => (
                 <li key={id}>
                   <Link href={`/tags/${id}`}>
-                    <a className="relative z-10 inline-block rounded bg-gray-100 px-2 py-1 text-sm text-gray-600 hover:text-gray-900 dark:bg-gray-700 dark:text-gray-300 dark:hover:text-gray-100">
+                    <a className="relative z-10 inline-block rounded-lg bg-gray-100 px-3 py-1.5 text-gray-600 hover:text-gray-900 dark:bg-gray-700 dark:text-gray-300 dark:hover:text-gray-100">
                       {name}
                     </a>
                   </Link>
