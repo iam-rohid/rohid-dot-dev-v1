@@ -103,30 +103,27 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-4">
+      <nav className="mx-auto flex h-14 max-w-screen-lg items-center justify-between gap-6 px-4">
         <button
           aria-label="Toggle theme button for this page"
           onClick={onMenuClick}
-          className="flex h-10 w-10 items-center justify-center rounded-md text-2xl text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100 md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-lg text-2xl text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100 md:hidden"
           title={`Toggle Theme (${colorScheme})`}
         >
           {showMenuOnMobile ? <MdClose /> : <MdMenu />}
         </button>
-        <ul className="hidden h-full items-center md:flex">
+        <ul className="hidden items-center gap-6 md:flex">
           {menu.map(({ label, href, id }) => (
-            <li key={id} className="h-full">
+            <li key={id}>
               <Link href={href}>
                 <a
                   aria-label={`link to ${label} page`}
                   title={label}
-                  className={classNames(
-                    "flex h-full items-center justify-center px-4",
-                    {
-                      "text-gray-900 dark:text-gray-50": activePath === id,
-                      "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-50":
-                        activePath !== id,
-                    }
-                  )}
+                  className={classNames("flex items-center justify-center", {
+                    "text-gray-900 dark:text-gray-50": activePath === id,
+                    "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-50":
+                      activePath !== id,
+                  })}
                 >
                   {label}
                 </a>
@@ -135,14 +132,14 @@ const Header = () => {
           ))}
         </ul>
         <div className="flex-1" />
-        <ul className="flex h-full items-center justify-end">
+        <ul className="flex items-center justify-end gap-2">
           {socialLinks.map(({ label, icon, href, id }) => (
             <li key={id} className="h-full">
               <Link href={href}>
                 <a
                   aria-label={`link to ${label}`}
                   target="_blank"
-                  className="flex h-full items-center justify-center px-3 text-xl text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg text-xl text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100"
                   title={label}
                 >
                   {icon}
@@ -154,7 +151,7 @@ const Header = () => {
         <button
           aria-label="Toggle theme button for this page"
           onClick={() => toggleTheme()}
-          className="flex h-10 w-10 items-center justify-center rounded-md text-2xl text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100"
+          className="flex h-10 w-10 items-center justify-center rounded-lg text-2xl text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100"
           title={`Toggle Theme (${colorScheme})`}
         >
           {colorScheme === "light" ? (
@@ -176,7 +173,7 @@ const Header = () => {
                     aria-label={`link to ${label} page`}
                     title={label}
                     className={classNames(
-                      "flex items-center rounded-md px-4 py-2.5",
+                      "flex items-center rounded-lg px-4 py-2.5",
                       {
                         "bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-50":
                           activePath === id,
