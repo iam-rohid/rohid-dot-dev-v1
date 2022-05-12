@@ -2,16 +2,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import {
-  FaTwitter,
-  FaInstagram,
-  FaGithub,
-  FaPatreon,
-  FaBars,
-  FaMoon,
-  FaSun,
-  FaLaptop,
-} from "react-icons/fa";
+import { FaTwitter, FaInstagram, FaGithub, FaPatreon } from "react-icons/fa";
 import {
   MdLightMode,
   MdDarkMode,

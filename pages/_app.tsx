@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import { ColorSchemeProvider } from "../contexts/ColorScheme";
 import "../styles/globals.css";
@@ -13,6 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ColorSchemeProvider>
         <Header />
         <Component {...pageProps} />
+        <Footer />
       </ColorSchemeProvider>
     </>
   );
