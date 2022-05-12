@@ -186,68 +186,71 @@ const Home: NextPage = () => {
           </section>
         </div>
 
-        <div className="w-full space-y-16 md:max-w-[260px] lg:max-w-[320px]">
-          <section id="categories">
-            <div className="mb-6 flex items-center gap-4">
-              <h2 className="flex-1 text-2xl font-medium">Categories</h2>
-            </div>
-            <ul className="flex w-full flex-wrap gap-2">
-              {[
-                {
-                  id: "react",
-                  name: "React",
-                },
-                {
-                  id: "typescript",
-                  name: "TypeScript",
-                },
-                {
-                  id: "next-js",
-                  name: "Next.js",
-                },
-                {
-                  id: "node-js",
-                  name: "Node.js",
-                },
-                {
-                  id: "figma",
-                  name: "Figma",
-                },
-                {
-                  id: "flutter",
-                  name: "Flutter",
-                },
-              ].map(({ id, name }) => (
-                <li key={id}>
-                  <Link href={`/tags/${id}`}>
-                    <a className="relative z-10 inline-block rounded-lg bg-gray-100 px-3 py-1.5 text-gray-600 hover:text-gray-900 dark:bg-gray-700 dark:text-gray-300 dark:hover:text-gray-100">
-                      {name}
+        <aside className="w-full md:max-w-[260px] lg:max-w-[320px]">
+          <div className="grid w-full grid-cols-1 gap-16 sm:grid-cols-2 sm:gap-6 md:grid-cols-1 md:gap-16">
+            <section id="categories">
+              <div className="mb-6 flex items-center gap-4">
+                <h2 className="flex-1 text-2xl font-medium">Categories</h2>
+              </div>
+              <ul className="flex w-full flex-wrap gap-2">
+                {[
+                  {
+                    id: "react",
+                    name: "React",
+                  },
+                  {
+                    id: "typescript",
+                    name: "TypeScript",
+                  },
+                  {
+                    id: "next-js",
+                    name: "Next.js",
+                  },
+                  {
+                    id: "node-js",
+                    name: "Node.js",
+                  },
+                  {
+                    id: "figma",
+                    name: "Figma",
+                  },
+                  {
+                    id: "flutter",
+                    name: "Flutter",
+                  },
+                ].map(({ id, name }) => (
+                  <li key={id}>
+                    <Link href={`/tags/${id}`}>
+                      <a className="relative z-10 inline-block rounded-lg bg-gray-100 px-3 py-1.5 text-gray-600 hover:text-gray-900 dark:bg-gray-700 dark:text-gray-300 dark:hover:text-gray-100">
+                        {name}
+                      </a>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section id="popular-posts">
+              <div className="mb-6 flex items-center gap-4">
+                <h2 className="flex-1 text-2xl font-medium">Popular Posts</h2>
+              </div>
+              <div className="grid grid-cols-1 gap-6">
+                {[1, 2, 3, 4, 5].map((item) => (
+                  <Link href={`/`} key={item}>
+                    <a className="flex">
+                      <p className="w-8 text-2xl font-bold text-gray-200 dark:text-gray-600">
+                        {item}
+                      </p>
+                      <h3 className="flex-1 text-lg font-medium underline-offset-2 hover:underline">
+                        Benefits of choosing React JS for your projects
+                      </h3>
                     </a>
                   </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-          <section id="popular-posts">
-            <div className="mb-6 flex items-center gap-4">
-              <h2 className="flex-1 text-2xl font-medium">Popular Posts</h2>
-            </div>
-            <div className="grid grid-cols-1 gap-6">
-              {[1, 2, 3, 4, 5].map((item) => (
-                <Link href={`/`} key={item}>
-                  <a className="flex">
-                    <p className="w-8 text-2xl font-bold text-gray-200 dark:text-gray-600">
-                      {item}
-                    </p>
-                    <h3 className="flex-1 text-lg font-medium underline-offset-2 hover:underline">
-                      Benefits of choosing React JS for your projects
-                    </h3>
-                  </a>
-                </Link>
-              ))}
-            </div>
-          </section>
-        </div>
+                ))}
+              </div>
+            </section>
+          </div>
+        </aside>
       </div>
     </main>
   );
