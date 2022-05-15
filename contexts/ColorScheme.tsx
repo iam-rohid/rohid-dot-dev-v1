@@ -1,9 +1,9 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useMemo } from "react";
 import { createContext, FC, useCallback, useContext } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import useMediaQuery from "../hooks/useMediaQuery";
 
-export type ColorScheme = "light" | "dark" | "system";
+export type ColorScheme = "light" | "dark";
 
 export type ColorSchemeContextType = {
   colorScheme: ColorScheme;
@@ -20,11 +20,11 @@ export type ColorSchemeProps = {
 
 export const ColorSchemeProvider: FC<ColorSchemeProps> = ({
   children,
-  initialColorScheme = "system",
+  initialColorScheme,
 }) => {
-  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+  const [colorScheme, setColorScheme] = useLocalStorage<string>({
     key: "color-scheme",
-    value: initialColorScheme,
+    value: "system",
   });
 
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -34,36 +34,55 @@ export const ColorSchemeProvider: FC<ColorSchemeProps> = ({
       if (scheme) {
         setColorScheme(scheme);
       } else {
-        switch (scheme || colorScheme) {
+        switch (colorScheme) {
           case "system":
-            setColorScheme("light");
+            setColorScheme(prefersDarkMode ? "light" : "dark");
             break;
           case "light":
             setColorScheme("dark");
             break;
           case "dark":
-            setColorScheme("system");
-            break;
-          default:
-            setColorScheme("system");
+            setColorScheme("light");
             break;
         }
       }
     },
-    [colorScheme, setColorScheme]
+    [colorScheme, setColorScheme, prefersDarkMode]
+  );
+
+  const getColorScheme = useMemo(
+    () =>
+      colorScheme === "system"
+        ? prefersDarkMode
+          ? "dark"
+          : "light"
+        : (colorScheme as ColorScheme),
+    [colorScheme, prefersDarkMode]
   );
 
   const value: ColorSchemeContextType = {
-    colorScheme,
+    colorScheme: getColorScheme,
     toggleTheme,
   };
 
   useEffect(() => {
+    if (!colorScheme) {
+      setColorScheme(
+        initialColorScheme
+          ? initialColorScheme
+          : prefersDarkMode
+          ? "dark"
+          : "light"
+      );
+    }
+  }, [colorScheme, initialColorScheme, prefersDarkMode, setColorScheme]);
+
+  useEffect(() => {
     window.document.documentElement.classList.toggle(
       "dark",
-      colorScheme === "dark" || (colorScheme === "system" && prefersDarkMode)
+      getColorScheme === "dark"
     );
-  }, [colorScheme, prefersDarkMode]);
+  }, [getColorScheme, prefersDarkMode]);
 
   return (
     <ColorSchemeContext.Provider value={value}>

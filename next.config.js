@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+const withMarkdoc = require("@markdoc/next.js");
 
-module.exports = nextConfig
+module.exports = withMarkdoc(/* options */)({
+  pageExtensions: ["tsx", "jsx", "md"],
+  reactStrictMode: true,
+});
