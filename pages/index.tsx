@@ -1,10 +1,44 @@
+import moment from "moment";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { MdChevronRight, MdStar, MdVisibility } from "react-icons/md";
+import { useMemo } from "react";
+import { MdChevronRight } from "react-icons/md";
+import { Blog } from "../types";
+import blogs from "./blog/blog.json";
 
 const Home: NextPage = () => {
+  const recentPosts = useMemo(
+    () =>
+      blogs
+        .sort((a, b) =>
+          Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1
+        )
+        .slice(0, 10) as Blog[],
+    []
+  );
+  const featuredPosts = useMemo(
+    () =>
+      blogs
+        .sort((a, b) =>
+          Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1
+        )
+        .filter((blog) => blog.isFeatured)
+        .slice(0, 10) as Blog[],
+    []
+  );
+  const popularPosts = useMemo(
+    () =>
+      blogs
+        .sort((a, b) =>
+          Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1
+        )
+        .filter((blog) => blog.isPopular)
+        .slice(0, 5) as Blog[],
+    []
+  );
+
   return (
     <main className="my-16 space-y-16">
       <Head>
@@ -45,24 +79,23 @@ const Home: NextPage = () => {
 
         <div className="mx-auto max-w-screen-lg overflow-x-auto">
           <div className="grid grid-flow-col py-4 pl-4">
-            {[1, 2, 3].map((item) => (
-              <div key={item} className="pr-4">
+            {featuredPosts.map((post) => (
+              <div key={post.slug} className="pr-4">
                 <article className="relative flex min-w-[300px] flex-col gap-4 rounded-xl bg-white p-4 shadow-md ring-1 ring-gray-200 hover:ring-gray-300 dark:bg-gray-800 dark:ring-gray-700 dark:hover:ring-gray-600">
-                  <Link href={`/`}>
+                  <Link href={`/blog/${post.slug}`}>
                     <a className="absolute inset-0 rounded-xl" />
                   </Link>
 
-                  <h3 className="text-xl font-medium">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et,
-                    impedit.
-                  </h3>
+                  <h3 className="text-xl font-medium">{post.title}</h3>
 
                   <div className="flex items-center gap-4 text-gray-600 dark:text-gray-300">
-                    <p className="flex-1">June 1, 2020</p>
-                    <div className="flex items-center gap-2">
+                    <p className="flex-1">
+                      {moment(post.createdAt).format("MMM DD, YYYY")}
+                    </p>
+                    {/* <div className="flex items-center gap-2">
                       <MdVisibility className="text-xl" />
                       <span>31,456</span>
-                    </div>
+                    </div> */}
                   </div>
                 </article>
               </div>
@@ -126,10 +159,10 @@ const Home: NextPage = () => {
                         </li>
                       ))}
                     </ul>
-                    <div className="flex items-center gap-2">
+                    {/* <div className="flex items-center gap-2">
                       <MdStar className="text-xl" />
                       <span>31,456</span>
-                    </div>
+                    </div> */}
                   </div>
                 </article>
               </div>
@@ -151,34 +184,30 @@ const Home: NextPage = () => {
               </Link>
             </div>
             <div className="grid grid-cols-1 gap-6">
-              {[1, 2, 3, 4, 5, 6].map((item) => (
+              {recentPosts.map((blog) => (
                 <article
-                  key={item}
+                  key={blog.slug}
                   className="group relative flex flex-col gap-2"
                 >
-                  <Link href={`/`}>
+                  <Link href={`/blog/${blog.slug}`}>
                     <a className="absolute inset-0" />
                   </Link>
 
                   <h3 className="text-xl font-medium underline-offset-4 group-hover:underline">
-                    Benefits of choosing React JS for your projects
+                    {blog.title}
                   </h3>
 
                   <p className="text-gray-600 line-clamp-2 dark:text-gray-300">
-                    ReactJS is an open-source, declarative, efficient,
-                    component-based front-end JavaScript library maintained by
-                    the social networking giant Facebook. It is used to build
-                    user interfaces tailored only for the view layer of web and
-                    mobile applications.
+                    {blog.description}
                   </p>
 
                   <div className="flex items-center gap-4 text-gray-600 dark:text-gray-300">
-                    <p>June 1, 2020</p>
-                    <p>3.5min read</p>
+                    <p>{moment(blog.updatedAt).format("MMM DD, YYYY")}</p>
+                    {/* <p>3.5min read</p>
                     <div className="flex items-center gap-2">
                       <MdVisibility className="text-xl" />
                       <span>31,456</span>
-                    </div>
+                    </div> */}
                   </div>
                 </article>
               ))}
@@ -235,14 +264,14 @@ const Home: NextPage = () => {
                 <h2 className="flex-1 text-2xl font-medium">Popular Posts</h2>
               </div>
               <div className="grid grid-cols-1 gap-6">
-                {[1, 2, 3, 4, 5].map((item) => (
-                  <Link href={`/`} key={item}>
+                {popularPosts.map((post, i) => (
+                  <Link href={`/blog/${post.slug}`} key={post.slug}>
                     <a className="flex">
                       <p className="w-8 text-2xl font-bold text-gray-200 dark:text-gray-600">
-                        {item}
+                        {i}
                       </p>
                       <h3 className="flex-1 text-lg font-medium underline-offset-2 hover:underline">
-                        Benefits of choosing React JS for your projects
+                        {post.title}
                       </h3>
                     </a>
                   </Link>

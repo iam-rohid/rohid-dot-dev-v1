@@ -4,7 +4,6 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import { ColorSchemeProvider } from "../contexts/ColorScheme";
 import "../styles/globals.css";
-
 import "prismjs";
 import BlogLayout from "../components/layouts/BlogLayout";
 const getLoader = require("prismjs/dependencies");
@@ -19,8 +18,6 @@ loader.load((id: string) => {
 });
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-  console.log({ router });
-
   const isBlog = router.pathname.startsWith("/blog/");
 
   return (
@@ -32,7 +29,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         <Header />
         <main>
           {isBlog ? (
-            <BlogLayout frontmatter={pageProps.markdoc.frontmatter}>
+            <BlogLayout>
               <Component {...pageProps} />
             </BlogLayout>
           ) : (

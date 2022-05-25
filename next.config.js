@@ -1,7 +1,10 @@
-/** @type {import('next').NextConfig} */
-const withMarkdoc = require("@markdoc/next.js");
-
-module.exports = withMarkdoc(/* options */)({
-  pageExtensions: ["tsx", "jsx", "md"],
-  reactStrictMode: true,
+const withMDX = require("@next/mdx")({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
+module.exports = withMDX({
+  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
 });
