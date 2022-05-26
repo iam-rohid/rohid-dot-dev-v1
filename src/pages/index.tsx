@@ -7,6 +7,7 @@ import { useMemo } from "react";
 import { MdChevronRight } from "react-icons/md";
 import { Post } from "@src/types";
 import { posts, tags, projects } from "@src/data";
+import BlogCard from "@src/components/Cards/BlogCard";
 
 const Home: NextPage = () => {
   const recentPosts = useMemo(
@@ -195,32 +196,8 @@ const Home: NextPage = () => {
               </Link>
             </div>
             <div className="grid grid-cols-1 gap-6">
-              {recentPosts.map((blog) => (
-                <article
-                  key={blog.slug}
-                  className="group relative flex flex-col gap-2"
-                >
-                  <Link href={`/blog/${blog.slug}`}>
-                    <a className="absolute inset-0" />
-                  </Link>
-
-                  <h3 className="text-xl font-medium underline-offset-4 group-hover:underline">
-                    {blog.title}
-                  </h3>
-
-                  <p className="text-gray-600 line-clamp-2 dark:text-gray-300">
-                    {blog.description}
-                  </p>
-
-                  <div className="flex items-center gap-4 text-gray-600 dark:text-gray-300">
-                    <p>{moment(blog.updatedAt).format("MMM DD, YYYY")}</p>
-                    {/* <p>3.5min read</p>
-                    <div className="flex items-center gap-2">
-                      <MdVisibility className="text-xl" />
-                      <span>31,456</span>
-                    </div> */}
-                  </div>
-                </article>
+              {recentPosts.map((post) => (
+                <BlogCard key={post.slug} post={post} />
               ))}
             </div>
           </section>
