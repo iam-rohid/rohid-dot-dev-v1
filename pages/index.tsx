@@ -5,37 +5,55 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
 import { MdChevronRight } from "react-icons/md";
-import { Blog } from "../types";
-import blogs from "./blog/blog.json";
+import { Post } from "../types";
+import { posts, tags, projects } from "../data";
 
 const Home: NextPage = () => {
   const recentPosts = useMemo(
     () =>
-      blogs
+      posts
+        .filter((blog) => !blog.isPrivate)
         .sort((a, b) =>
           Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1
         )
-        .slice(0, 10) as Blog[],
+        .slice(0, 10) as Post[],
     []
   );
+
   const featuredPosts = useMemo(
     () =>
-      blogs
+      posts
+        .filter((blog) => !blog.isPrivate)
         .sort((a, b) =>
           Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1
         )
         .filter((blog) => blog.isFeatured)
-        .slice(0, 10) as Blog[],
+        .slice(0, 10) as Post[],
     []
   );
+
   const popularPosts = useMemo(
     () =>
-      blogs
+      posts
+        .filter((blog) => !blog.isPrivate)
         .sort((a, b) =>
           Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1
         )
         .filter((blog) => blog.isPopular)
-        .slice(0, 5) as Blog[],
+        .slice(0, 5) as Post[],
+    []
+  );
+
+  const featuredTags = useMemo(
+    () =>
+      tags
+        .filter((tag) => tag.isFeatured)
+        .sort((a, b) => (a.name > b.name ? 1 : -1)),
+    []
+  );
+
+  const featuredProjects = useMemo(
+    () => projects.filter((project) => project.isFeatured).slice(0, 3),
     []
   );
 
@@ -117,21 +135,18 @@ const Home: NextPage = () => {
 
         <div className="mx-auto max-w-screen-lg overflow-x-auto">
           <div className="grid grid-flow-col py-4 pl-4">
-            {[1, 2, 3].map((item) => (
-              <div className="pr-4" key={item}>
+            {featuredProjects.map((project) => (
+              <div className="pr-4" key={project.slug}>
                 <article className="relative flex min-w-[300px] flex-col gap-4 rounded-xl bg-white py-4 px-2 shadow-md ring-1 ring-gray-200 hover:ring-gray-300 dark:bg-gray-800 dark:ring-gray-700 dark:hover:ring-gray-600">
-                  <Link href={`/`}>
+                  <Link href={`/projects/${project.slug}`}>
                     <a className="absolute inset-0 rounded-xl" />
                   </Link>
 
-                  <h3 className="px-2 text-xl font-medium">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et,
-                    impedit.
-                  </h3>
+                  <h3 className="px-2 text-xl font-medium">{project.name}</h3>
 
                   <div className="pointer-events-none relative aspect-[3/2] w-full overflow-hidden rounded-2xl">
                     <Image
-                      src={`/images/project-photo-02.jpg`}
+                      src={project.coverPhoto}
                       alt="Project"
                       layout="fill"
                       objectFit="cover"
@@ -140,24 +155,20 @@ const Home: NextPage = () => {
 
                   <div className="flex items-center gap-4 px-2 text-gray-600 dark:text-gray-300">
                     <ul className="flex flex-1 flex-wrap items-center gap-2">
-                      {[
-                        {
-                          id: "react",
-                          name: "React",
-                        },
-                        {
-                          id: "typescript",
-                          name: "TypeScript",
-                        },
-                      ].map(({ id, name }) => (
-                        <li key={id}>
-                          <Link href={`/tags/${id}`}>
-                            <a className="relative z-10 inline-block rounded-md bg-gray-100 px-2 py-1 text-sm hover:text-gray-900 dark:bg-gray-700 dark:hover:text-gray-100">
-                              {name}
-                            </a>
-                          </Link>
-                        </li>
-                      ))}
+                      {project.tags.map((tag) => {
+                        const _tag = tags.find((t) => t.slug === tag);
+                        if (!_tag) return null;
+
+                        return (
+                          <li key={_tag.slug}>
+                            <Link href={`/tags/${_tag.slug}`}>
+                              <a className="relative z-10 inline-block rounded-md bg-gray-100 px-2 py-1 text-sm hover:text-gray-900 dark:bg-gray-700 dark:hover:text-gray-100">
+                                {_tag.name}
+                              </a>
+                            </Link>
+                          </li>
+                        );
+                      })}
                     </ul>
                     {/* <div className="flex items-center gap-2">
                       <MdStar className="text-xl" />
@@ -219,37 +230,12 @@ const Home: NextPage = () => {
           <div className="grid w-full grid-cols-1 gap-16 sm:grid-cols-2 sm:gap-6 md:grid-cols-1 md:gap-16">
             <section id="categories">
               <div className="mb-6 flex items-center gap-4">
-                <h2 className="flex-1 text-2xl font-medium">Categories</h2>
+                <h2 className="flex-1 text-2xl font-medium">Featured Tags</h2>
               </div>
               <ul className="flex w-full flex-wrap gap-2">
-                {[
-                  {
-                    id: "react",
-                    name: "React",
-                  },
-                  {
-                    id: "typescript",
-                    name: "TypeScript",
-                  },
-                  {
-                    id: "next-js",
-                    name: "Next.js",
-                  },
-                  {
-                    id: "node-js",
-                    name: "Node.js",
-                  },
-                  {
-                    id: "figma",
-                    name: "Figma",
-                  },
-                  {
-                    id: "flutter",
-                    name: "Flutter",
-                  },
-                ].map(({ id, name }) => (
-                  <li key={id}>
-                    <Link href={`/tags/${id}`}>
+                {featuredTags.map(({ slug, name }) => (
+                  <li key={slug}>
+                    <Link href={`/tags/${slug}`}>
                       <a className="relative z-10 inline-block rounded-lg bg-gray-100 px-3 py-1.5 text-gray-600 hover:text-gray-900 dark:bg-gray-700 dark:text-gray-300 dark:hover:text-gray-100">
                         {name}
                       </a>

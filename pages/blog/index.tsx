@@ -1,15 +1,17 @@
 import moment from "moment";
 import Link from "next/link";
 import { useMemo } from "react";
-import { Blog } from "../../types";
+import { Post } from "../../types";
 import blogs from "./blog.json";
 
 const BlogPage = () => {
   const recentPosts = useMemo(
     () =>
-      blogs.sort((a, b) =>
-        Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1
-      ) as Blog[],
+      blogs
+        .filter((blog) => !blog.isPrivate)
+        .sort((a, b) =>
+          Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1
+        ) as Post[],
     []
   );
   return (

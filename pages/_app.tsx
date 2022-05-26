@@ -4,22 +4,8 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import { ColorSchemeProvider } from "../contexts/ColorScheme";
 import "../styles/globals.css";
-import "prismjs";
-import BlogLayout from "../components/layouts/BlogLayout";
-const getLoader = require("prismjs/dependencies");
-const components = require("prismjs/components");
 
-const componentsToLoad = ["markup", "css", "php", "tsx", "jsx", "ts", "js"];
-const loadedComponents = ["clike", "javascript", "typescript"];
-
-const loader = getLoader(components, componentsToLoad, loadedComponents);
-loader.load((id: string) => {
-  require(`prismjs/components/prism-${id}.min.js`);
-});
-
-function MyApp({ Component, pageProps, router }: AppProps) {
-  const isBlog = router.pathname.startsWith("/blog/");
-
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
@@ -28,13 +14,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       <ColorSchemeProvider>
         <Header />
         <main>
-          {isBlog ? (
-            <BlogLayout>
-              <Component {...pageProps} />
-            </BlogLayout>
-          ) : (
-            <Component {...pageProps} />
-          )}
+          <Component {...pageProps} />
         </main>
         <Footer />
       </ColorSchemeProvider>

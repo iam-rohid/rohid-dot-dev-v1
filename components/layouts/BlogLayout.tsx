@@ -1,14 +1,5 @@
 import React from "react";
 
-export type BlogFrontmatter = {
-  private: boolean;
-  title: string;
-  description?: string;
-  date?: string;
-  tags?: string[];
-  featured: boolean;
-};
-
 export type BlogLayoutProps = {
   children: React.ReactNode;
 };

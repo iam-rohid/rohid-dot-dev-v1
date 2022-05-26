@@ -1,3 +1,5 @@
+import BlogLayout from "../../../components/layouts/BlogLayout";
+
 # Configure Next.js with TypeScript and Tailwindcss
 
 Hi everyone.
@@ -141,3 +143,5 @@ export default MyApp;
 
 Awesome restart the development server and you will see some style changes.
 We successfully created a next.js project with TypeScript and Tailwindcss from scratch.
+
+export default ({ children }) => <BlogLayout>{children}</BlogLayout>;
