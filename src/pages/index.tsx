@@ -102,7 +102,7 @@ const Home: NextPage = () => {
             {featuredPosts.map((post) => (
               <article
                 key={post.slug}
-                className="relative flex min-w-[300px] flex-col gap-4 rounded-xl bg-white p-4 shadow-md ring-1 ring-gray-200 hover:ring-gray-300 dark:bg-gray-900 dark:ring-gray-800 dark:hover:ring-gray-700"
+                className="relative flex flex-col gap-4 rounded-xl bg-white p-4 shadow-md ring-1 ring-gray-200 hover:ring-gray-300 dark:bg-gray-900 dark:ring-gray-800 dark:hover:ring-gray-700"
               >
                 <Link href={`/blog/${post.slug}`}>
                   <a className="absolute inset-0 rounded-xl" />
@@ -128,7 +128,7 @@ const Home: NextPage = () => {
           title="Featured Projects"
           id="featured-projects"
           moreLink={{
-            text: "ALl Projects",
+            text: "All Projects",
             href: "/projects",
           }}
           className="my-16"
