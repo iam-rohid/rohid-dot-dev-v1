@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
 import { MdChevronRight } from "react-icons/md";
-import { Post } from "../types";
-import { posts, tags, projects } from "../data";
+import { Post } from "@src/types";
+import { posts, tags, projects } from "@src/data";
 
 const Home: NextPage = () => {
   const recentPosts = useMemo(

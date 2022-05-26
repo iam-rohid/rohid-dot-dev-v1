@@ -1,4 +1,4 @@
-import { Tag } from "../types";
+import { Tag } from "@src/types";
 
 export const tags: Tag[] = [
   {

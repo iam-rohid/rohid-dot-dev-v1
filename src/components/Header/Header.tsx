@@ -10,8 +10,8 @@ import {
   MdMenu,
   MdClose,
 } from "react-icons/md";
-import { useColorScheme } from "../../contexts/ColorScheme";
-import useMediaQuery from "../../hooks/useMediaQuery";
+import { useColorScheme } from "@src/contexts/ColorScheme";
+import useMediaQuery from "@src/hooks/useMediaQuery";
 
 const menu = [
   {

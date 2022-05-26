@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useMemo } from "react";
 import { createContext, FC, useCallback, useContext } from "react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import useMediaQuery from "../hooks/useMediaQuery";
+import { useLocalStorage } from "@src/hooks/useLocalStorage";
+import useMediaQuery from "@src/hooks/useMediaQuery";
 
 export type ColorScheme = "light" | "dark";
 

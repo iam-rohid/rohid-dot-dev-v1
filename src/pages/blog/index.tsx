@@ -1,19 +1,20 @@
 import moment from "moment";
 import Link from "next/link";
 import { useMemo } from "react";
-import { Post } from "../../types";
-import blogs from "./blog.json";
+import { Post } from "@src/types";
+import { posts } from "@src/data";
 
 const BlogPage = () => {
-  const recentPosts = useMemo(
+  const allPosts = useMemo(
     () =>
-      blogs
+      posts
         .filter((blog) => !blog.isPrivate)
         .sort((a, b) =>
           Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1
         ) as Post[],
     []
   );
+
   return (
     <div className="mx-auto my-16 mb-2 flex max-w-screen-lg items-center gap-4 px-4">
       <section id="recent-posts">
@@ -21,7 +22,7 @@ const BlogPage = () => {
           <h2 className="flex-1 text-2xl font-medium">All Posts</h2>
         </div>
         <div className="grid grid-cols-1 gap-6">
-          {recentPosts.map((blog) => (
+          {allPosts.map((blog) => (
             <article
               key={blog.slug}
               className="group relative flex flex-col gap-2"

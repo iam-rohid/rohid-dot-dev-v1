@@ -1,9 +1,9 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import Footer from "../components/Footer/Footer";
-import Header from "../components/Header/Header";
-import { ColorSchemeProvider } from "../contexts/ColorScheme";
-import "../styles/globals.css";
+import Footer from "@src/components/Footer/Footer";
+import Header from "@src/components/Header/Header";
+import { ColorSchemeProvider } from "@src/contexts/ColorScheme";
+import "@src/styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
