@@ -15,7 +15,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
       <div className="pointer-events-none relative aspect-[3/2] w-full overflow-hidden rounded-2xl">
         <Image
-          src={project.coverPhoto}
+          src={project.images[0]}
           alt="Project"
           layout="fill"
           objectFit="cover"

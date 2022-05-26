@@ -166,9 +166,9 @@ const Header = () => {
                     className={classNames(
                       "flex items-center rounded-lg px-4 py-2.5",
                       {
-                        "bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-50":
+                        "bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-50":
                           activePath === id,
-                        "text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-50":
+                        "text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-50":
                           activePath !== id,
                       }
                     )}

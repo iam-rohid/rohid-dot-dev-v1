@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export type Post = {
   slug: string;
   title: string;
@@ -16,8 +18,9 @@ export type Project = {
   description: string;
   tags: string[];
   isFeatured?: boolean;
-  url: string;
-  coverPhoto: string;
+  url?: string;
+  repo?: string;
+  images: (string | StaticImageData)[];
 };
 
 export type Tag = {
