@@ -25,20 +25,20 @@ const menu = [
     href: "/blog",
   },
   {
-    id: "daily-logs",
-    label: "Daily Logs",
-    href: "/daily-logs",
-  },
-  {
     id: "projects",
     label: "Projects",
     href: "/projects",
   },
-  {
-    id: "snippets",
-    label: "Snippets",
-    href: "/snippets",
-  },
+  // {
+  //   id: "daily-logs",
+  //   label: "Daily Logs",
+  //   href: "/daily-logs",
+  // },
+  // {
+  //   id: "snippets",
+  //   label: "Snippets",
+  //   href: "/snippets",
+  // },
 ];
 
 const socialLinks = [
@@ -46,13 +46,13 @@ const socialLinks = [
     id: "twitter",
     label: "Twitter",
     icon: <FaTwitter />,
-    href: "https://twitter.com/rohidisdev",
+    href: "https://twitter.com/rohid_dev",
   },
   {
     id: "githu",
     label: "Github",
     icon: <FaGithub />,
-    href: "https://github.com/rohidisdev",
+    href: "https://github.com/rohid-dev",
   },
   {
     id: "instagram",
@@ -130,7 +130,7 @@ const Header = () => {
                 <a
                   aria-label={`link to ${label}`}
                   target="_blank"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg text-xl text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg text-xl text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100"
                   title={label}
                 >
                   {icon}
@@ -142,7 +142,7 @@ const Header = () => {
         <button
           aria-label="Toggle theme button for this page"
           onClick={() => toggleTheme()}
-          className="flex h-10 w-10 items-center justify-center rounded-lg text-2xl text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-100"
+          className="flex h-10 w-10 items-center justify-center rounded-lg text-2xl text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100"
           title={`Toggle Theme (${colorScheme})`}
         >
           {colorScheme === "light" ? (

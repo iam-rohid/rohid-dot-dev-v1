@@ -9,15 +9,12 @@ const BlogCard = ({ post }: { post: Post }) => {
       <Link href={`/blog/${post.slug}`}>
         <a className="absolute inset-0" />
       </Link>
-
       <h3 className="text-xl font-medium underline-offset-4 group-hover:underline">
         {post.title}
       </h3>
-
       <p className="text-gray-600 line-clamp-2 dark:text-gray-300">
         {post.description}
       </p>
-
       <div className="flex items-center gap-4 text-gray-600 dark:text-gray-300">
         <p>{moment(post.updatedAt).format("MMM DD, YYYY")}</p>
         {/* <p>3.5min read</p>

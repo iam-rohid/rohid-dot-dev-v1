@@ -2,6 +2,15 @@
   "name": "personal-blog",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "email": "rohidul209@gmail.com",
+    "name": "Rohidul Islam",
+    "url": "https://rohid.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rohid-dev/rohid-dot-dev"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

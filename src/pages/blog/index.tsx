@@ -2,8 +2,10 @@ import { useMemo, useState } from "react";
 import { Post } from "@src/types";
 import { posts } from "@src/data";
 import { GetStaticProps } from "next";
-import { MdSearch } from "react-icons/md";
 import BlogCard from "@src/components/Cards/BlogCard";
+import PageHeader from "@src/components/PageHeader";
+import SearchBar from "@src/components/SearchBar";
+import SectionTitle from "@src/components/SectionTitle";
 
 type BlogPageProps = {
   popularPosts: Post[];
@@ -24,56 +26,36 @@ const BlogPage = ({ allPosts, popularPosts }: BlogPageProps) => {
 
   return (
     <div className="mx-auto mb-2 max-w-screen-lg px-4">
-      <section className="my-16">
-        <div className="mb-6 flex items-center gap-4">
-          <h1 className="flex-1 text-4xl font-black">Blog</h1>
-        </div>
-        <div className="relative">
-          <input
-            type="text"
-            className="h-12 w-full appearance-none rounded-xl border-none bg-transparent pr-4 pl-12 text-base outline-none ring-1 ring-gray-200 focus:bg-transparent focus:ring-indigo-500 dark:ring-gray-700 dark:focus:ring-indigo-500"
-            placeholder="Search"
-            value={searchKey}
-            onChange={(e) => setSearchKey(e.target.value)}
-          />
-          <MdSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-2xl" />
-        </div>
-      </section>
+      <PageHeader title="Blog">
+        <SearchBar value={searchKey} onChange={setSearchKey} />
+      </PageHeader>
       {searchKey ? (
-        <section id="recent-posts" className="my-16">
-          <div className="mb-6 flex items-center gap-4">
-            <h2 className="flex-1 text-2xl font-medium">
-              Search Results {searchedPosts.length}
-            </h2>
-          </div>
+        <SectionTitle
+          className="my-16"
+          title={`Search Results ${searchedPosts.length}`}
+        >
           <div className="grid grid-cols-1 gap-6">
             {searchedPosts.map((post) => (
               <BlogCard key={post.slug} post={post} />
             ))}
           </div>
-        </section>
+        </SectionTitle>
       ) : (
         <>
-          <section id="recent-posts" className="my-16">
-            <div className="mb-6 flex items-center gap-4">
-              <h2 className="flex-1 text-2xl font-medium">Popular Posts</h2>
-            </div>
+          <SectionTitle className="my-16" title="Popular Posts">
             <div className="grid grid-cols-1 gap-6">
               {popularPosts.map((post) => (
                 <BlogCard key={post.slug} post={post} />
               ))}
             </div>
-          </section>
-          <section id="recent-posts" className="my-16">
-            <div className="mb-6 flex items-center gap-4">
-              <h2 className="flex-1 text-2xl font-medium">All Posts</h2>
-            </div>
+          </SectionTitle>
+          <SectionTitle className="my-16" title="All Posts">
             <div className="grid grid-cols-1 gap-6">
               {allPosts.map((post) => (
                 <BlogCard key={post.slug} post={post} />
               ))}
             </div>
-          </section>
+          </SectionTitle>
         </>
       )}
     </div>

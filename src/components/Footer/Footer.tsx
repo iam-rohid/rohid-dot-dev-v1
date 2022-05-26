@@ -7,13 +7,13 @@ const socialLinks = [
     id: "twitter",
     label: "Twitter",
     icon: <FaTwitter />,
-    href: "https://twitter.com/rohidisdev",
+    href: "https://twitter.com/rohid_dev",
   },
   {
     id: "githu",
     label: "Github",
     icon: <FaGithub />,
-    href: "https://github.com/rohidisdev",
+    href: "https://github.com/rohid-dev",
   },
   {
     id: "instagram",

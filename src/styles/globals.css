@@ -10,7 +10,7 @@
 
 @layer base {
   body {
-    @apply bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100;
+    @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100;
   }
   main {
     @apply min-h-[calc(100vh-56px)];
