@@ -4,7 +4,6 @@ export const posts: Post[] = [
   {
     isPrivate: false,
     isFeatured: true,
-    isPopular: false,
     slug: "configure-nextjs-with-typescript-and-tailwindcss",
     title: "Configure Next.js with TypeScript and Tailwindcss",
     description:
@@ -16,7 +15,6 @@ export const posts: Post[] = [
   {
     isPrivate: false,
     isFeatured: true,
-    isPopular: true,
     slug: "react-tailwindcss-typescript-vite-starter-template",
     title: "React Tailwindcss TypeScript Vite Starter Template",
     description:
@@ -28,7 +26,6 @@ export const posts: Post[] = [
   {
     isPrivate: false,
     isFeatured: true,
-    isPopular: true,
     slug: "top-10-vscode-extensions-for-react-and-next-js",
     title: "Top 10 VSCode Extensions for React and Next.js",
     description:

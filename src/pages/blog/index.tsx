@@ -1,19 +1,22 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Post } from "@src/types";
-import { posts } from "@src/data";
 import { GetStaticProps } from "next";
 import BlogCard from "@src/components/Cards/BlogCard";
 import PageHeader from "@src/components/PageHeader";
 import SearchBar from "@src/components/SearchBar";
 import SectionTitle from "@src/components/SectionTitle";
+import { getAllPosts } from "@src/utils/post-service";
 
 type BlogPageProps = {
-  popularPosts: Post[];
   allPosts: Post[];
+  popularPosts: Post[];
 };
-
-const BlogPage = ({ allPosts, popularPosts }: BlogPageProps) => {
+const BlogPage = (props: BlogPageProps) => {
+  const [allPosts, setAllPosts] = useState(props.allPosts);
+  const [popularPosts, setPopularPosts] = useState(props.popularPosts);
   const [searchKey, setSearchKey] = useState("");
+  const [dataUpdated, setDataUpdated] = useState(false);
+
   const searchedPosts = useMemo(() => {
     const keys = searchKey.toLowerCase().split(" ");
     if (keys.length === 0) return [];
@@ -23,6 +26,23 @@ const BlogPage = ({ allPosts, popularPosts }: BlogPageProps) => {
       return keys.every((key) => title.includes(key) || content.includes(key));
     });
   }, [searchKey, allPosts]);
+
+  useEffect(() => {
+    const revalidate = async () => {
+      const _posts = await getAllPosts();
+      setAllPosts(_posts);
+      setPopularPosts(
+        _posts
+          .sort((a, b) => ((a.views || 0) > (b.views || 0) ? -1 : 1))
+          .slice(0, 5)
+      );
+    };
+
+    if (!dataUpdated) {
+      revalidate();
+      setDataUpdated(true);
+    }
+  }, [allPosts, dataUpdated]);
 
   return (
     <div className="mx-auto mb-2 max-w-screen-lg px-4">
@@ -44,14 +64,17 @@ const BlogPage = ({ allPosts, popularPosts }: BlogPageProps) => {
         <>
           <SectionTitle className="my-16" title="Popular Posts">
             <div className="grid grid-cols-1 gap-6">
-              {popularPosts.map((post) => (
+              {popularPosts?.map((post) => (
                 <BlogCard key={post.slug} post={post} />
               ))}
             </div>
           </SectionTitle>
-          <SectionTitle className="my-16" title="All Posts">
+          <SectionTitle
+            className="my-16"
+            title={`All Posts ${allPosts.length}`}
+          >
             <div className="grid grid-cols-1 gap-6">
-              {allPosts.map((post) => (
+              {allPosts?.map((post) => (
                 <BlogCard key={post.slug} post={post} />
               ))}
             </div>
@@ -64,23 +87,16 @@ const BlogPage = ({ allPosts, popularPosts }: BlogPageProps) => {
 
 export default BlogPage;
 
-export const getStaticProps: GetStaticProps<BlogPageProps> = () => {
-  const allPosts = posts
-    .filter((post) => !post.isPrivate)
-    .sort((a, b) => {
-      const dateA = Date.parse(a.createdAt);
-      const dateB = Date.parse(b.createdAt);
-      if (dateA > dateB) return -1;
-      if (dateA < dateB) return 1;
-      return 0;
-    });
-  const popularPosts = allPosts.filter((post) => post.isPopular);
+export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
+  const allPosts = await getAllPosts();
+  const popularPosts = allPosts
+    .sort((a, b) => (a.views > b.views ? -1 : 1))
+    .slice(0, 5);
 
   return {
     props: {
       allPosts,
       popularPosts,
-      tags: [],
     },
   };
 };

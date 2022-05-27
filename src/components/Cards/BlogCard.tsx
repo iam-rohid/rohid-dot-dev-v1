@@ -2,6 +2,7 @@ import { Post } from "@src/types";
 import moment from "moment";
 import Link from "next/link";
 import React from "react";
+import { MdVisibility } from "react-icons/md";
 
 const BlogCard = ({ post }: { post: Post }) => {
   return (
@@ -12,16 +13,16 @@ const BlogCard = ({ post }: { post: Post }) => {
       <h3 className="text-xl font-medium underline-offset-4 group-hover:underline">
         {post.title}
       </h3>
-      <p className="text-gray-600 line-clamp-2 dark:text-gray-300">
+      <p className="text-gray-700 line-clamp-2 dark:text-gray-300">
         {post.description}
       </p>
-      <div className="flex items-center gap-4 text-gray-600 dark:text-gray-300">
-        <p>{moment(post.updatedAt).format("MMM DD, YYYY")}</p>
-        {/* <p>3.5min read</p>
-            <div className="flex items-center gap-2">
-              <MdVisibility className="text-xl" />
-              <span>31,456</span>
-            </div> */}
+      <div className="inline-flex items-center gap-4 text-gray-600 dark:text-gray-400">
+        <span>{moment(post.createdAt).format("MMM DD, YYYY")}</span>
+        {/* <span>3.5min read</span> */}
+        <span className="inline-flex items-center gap-2">
+          <MdVisibility className="text-xl" />
+          <span>{(post.views || 0).toLocaleString()} views</span>
+        </span>
       </div>
     </article>
   );

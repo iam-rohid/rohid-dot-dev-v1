@@ -9,7 +9,7 @@ export type Post = {
   updatedAt: string;
   isPrivate?: boolean;
   isFeatured?: boolean;
-  isPopular?: boolean;
+  views?: number;
 };
 
 export type Project = {

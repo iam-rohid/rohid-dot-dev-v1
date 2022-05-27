@@ -1,64 +1,31 @@
 import moment from "moment";
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo } from "react";
-import { Post } from "@src/types";
-import { posts, tags, projects } from "@src/data";
+import { Post, Project, Tag } from "@src/types";
+import { tags, projects } from "@src/data";
 import BlogCard from "@src/components/Cards/BlogCard";
 import SectionTitle from "@src/components/SectionTitle";
 import ProjectCard from "@src/components/Cards/ProjectCard";
+import { MdVisibility } from "react-icons/md";
+import { getAllPosts } from "@src/utils/post-service";
 
-const Home: NextPage = () => {
-  const recentPosts = useMemo(
-    () =>
-      posts
-        .filter((blog) => !blog.isPrivate)
-        .sort((a, b) =>
-          Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1
-        )
-        .slice(0, 10) as Post[],
-    []
-  );
+type HomePageProps = {
+  recentPosts: Post[];
+  featuredPosts: Post[];
+  popularPosts: Post[];
+  featuredProjects: Project[];
+  featuredTags: Tag[];
+};
 
-  const featuredPosts = useMemo(
-    () =>
-      posts
-        .filter((blog) => !blog.isPrivate)
-        .sort((a, b) =>
-          Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1
-        )
-        .filter((blog) => blog.isFeatured)
-        .slice(0, 10) as Post[],
-    []
-  );
-
-  const popularPosts = useMemo(
-    () =>
-      posts
-        .filter((blog) => !blog.isPrivate)
-        .sort((a, b) =>
-          Date.parse(a.createdAt) > Date.parse(b.createdAt) ? -1 : 1
-        )
-        .filter((blog) => blog.isPopular)
-        .slice(0, 5) as Post[],
-    []
-  );
-
-  const featuredTags = useMemo(
-    () =>
-      tags
-        .filter((tag) => tag.isFeatured)
-        .sort((a, b) => (a.name > b.name ? 1 : -1)),
-    []
-  );
-
-  const featuredProjects = useMemo(
-    () => projects.filter((project) => project.isFeatured).slice(0, 3),
-    []
-  );
-
+const HomePage: NextPage<HomePageProps> = ({
+  recentPosts,
+  featuredPosts,
+  popularPosts,
+  featuredProjects,
+  featuredTags,
+}) => {
   return (
     <>
       <Head>
@@ -114,10 +81,10 @@ const Home: NextPage = () => {
                   <p className="flex-1">
                     {moment(post.createdAt).format("MMM DD, YYYY")}
                   </p>
-                  {/* <div className="flex items-center gap-2">
-                      <MdVisibility className="text-xl" />
-                      <span>31,456</span>
-                    </div> */}
+                  <div className="flex items-center gap-2">
+                    <MdVisibility className="text-xl" />
+                    <span>{(post.views || 0).toLocaleString()}</span>
+                  </div>
                 </div>
               </article>
             ))}
@@ -182,9 +149,16 @@ const Home: NextPage = () => {
                         <p className="w-8 text-2xl font-bold text-gray-200 dark:text-gray-600">
                           {i}
                         </p>
-                        <h3 className="flex-1 text-lg font-medium underline-offset-2 hover:underline">
-                          {post.title}
-                        </h3>
+                        <div>
+                          <h3 className="flex-1 text-lg font-medium underline-offset-2 hover:underline">
+                            {post.title}
+                          </h3>
+                          <div className="inline-flex items-center gap-4 text-gray-600 dark:text-gray-400">
+                            <span>
+                              {(post.views || 0).toLocaleString()} views
+                            </span>
+                          </div>
+                        </div>
                       </a>
                     </Link>
                   ))}
@@ -198,4 +172,27 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default HomePage;
+
+export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
+  const posts = await getAllPosts();
+  const recentPosts = posts.slice(0, 10);
+  const featuredPosts = posts.filter((post) => post.isFeatured).slice(0, 3);
+  const popularPosts = posts
+    .sort((a, b) => (a.views > b.views ? -1 : 1))
+    .slice(0, 5);
+
+  return {
+    props: {
+      recentPosts,
+      featuredPosts,
+      popularPosts,
+      featuredProjects: projects
+        .filter((project) => project.isFeatured)
+        .slice(0, 3),
+      featuredTags: tags
+        .filter((tag) => tag.isFeatured)
+        .sort((a, b) => (a.name > b.name ? 1 : -1)),
+    },
+  };
+};
