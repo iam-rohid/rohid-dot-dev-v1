@@ -73,5 +73,6 @@ export const getStaticProps: GetStaticProps<ProjectsPageProps> = () => {
       allProjects,
       featuredProjects,
     },
+    revalidate: 60,
   };
 };

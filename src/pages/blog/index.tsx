@@ -98,5 +98,6 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
       allPosts,
       popularPosts,
     },
+    revalidate: 60,
   };
 };

@@ -194,5 +194,6 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
         .filter((tag) => tag.isFeatured)
         .sort((a, b) => (a.name > b.name ? 1 : -1)),
     },
+    revalidate: 60,
   };
 };
