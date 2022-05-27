@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Post } from "@src/types";
 import { GetStaticProps } from "next";
 import BlogCard from "@src/components/Cards/BlogCard";
@@ -11,11 +11,9 @@ type BlogPageProps = {
   allPosts: Post[];
   popularPosts: Post[];
 };
-const BlogPage = (props: BlogPageProps) => {
-  const [allPosts, setAllPosts] = useState(props.allPosts);
-  const [popularPosts, setPopularPosts] = useState(props.popularPosts);
+
+const BlogPage = ({ allPosts, popularPosts }: BlogPageProps) => {
   const [searchKey, setSearchKey] = useState("");
-  const [dataUpdated, setDataUpdated] = useState(false);
 
   const searchedPosts = useMemo(() => {
     const keys = searchKey.toLowerCase().split(" ");
@@ -27,25 +25,8 @@ const BlogPage = (props: BlogPageProps) => {
     });
   }, [searchKey, allPosts]);
 
-  useEffect(() => {
-    const revalidate = async () => {
-      const _posts = await getAllPosts();
-      setAllPosts(_posts);
-      setPopularPosts(
-        _posts
-          .sort((a, b) => ((a.views || 0) > (b.views || 0) ? -1 : 1))
-          .slice(0, 5)
-      );
-    };
-
-    if (!dataUpdated) {
-      revalidate();
-      setDataUpdated(true);
-    }
-  }, [allPosts, dataUpdated]);
-
   return (
-    <div className="mx-auto mb-2 max-w-screen-lg px-4">
+    <div className="mx-auto mb-2 max-w-4xl px-4">
       <PageHeader title="Blog">
         <SearchBar value={searchKey} onChange={setSearchKey} />
       </PageHeader>

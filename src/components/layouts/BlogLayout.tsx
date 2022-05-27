@@ -39,7 +39,7 @@ const BlogLayout = ({ children, meta }: BlogLayoutProps) => {
   }, [meta, viewAdded]);
 
   return (
-    <div className="mx-auto my-16 w-full max-w-screen-lg px-4">
+    <div className="mx-auto my-16 w-full max-w-4xl px-4">
       <h1 className="mb-4 text-4xl font-black leading-tight md:text-5xl">
         {post.title}
       </h1>

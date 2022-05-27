@@ -31,7 +31,7 @@ const HomePage: NextPage<HomePageProps> = ({
       <Head>
         <title>Home</title>
       </Head>
-      <div className="mx-auto w-full max-w-screen-lg px-4">
+      <div className="mx-auto w-full max-w-4xl px-4">
         <section className="my-16">
           <div className="flex flex-col-reverse items-center gap-16 md:flex-row">
             <div className="flex-1 text-center md:text-left">
@@ -77,7 +77,7 @@ const HomePage: NextPage<HomePageProps> = ({
 
                 <h3 className="text-xl font-medium">{post.title}</h3>
 
-                <div className="flex items-center gap-4 text-gray-600 dark:text-gray-300">
+                <div className="mt-auto flex items-center gap-4 text-gray-600 dark:text-gray-400">
                   <p className="flex-1">
                     {moment(post.createdAt).format("MMM DD, YYYY")}
                   </p>

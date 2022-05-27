@@ -14,7 +14,7 @@ const ProjectLayout = ({
   const [imgIndex, setImgIndex] = useState(0);
 
   return (
-    <div className="mx-auto max-w-screen-lg px-4">
+    <div className="mx-auto max-w-4xl px-4">
       <div className="my-16">
         <h1 className="mb-8 text-4xl font-black leading-tight md:text-5xl">
           {meta.name}

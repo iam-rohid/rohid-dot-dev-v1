@@ -26,7 +26,7 @@ const ProjectsPage = ({ allProjects, featuredProjects }: ProjectsPageProps) => {
   }, [searchKey, allProjects]);
 
   return (
-    <div className="mx-auto mb-2 max-w-screen-lg px-4">
+    <div className="mx-auto mb-2 max-w-4xl px-4">
       <PageHeader title="Projects">
         <SearchBar value={searchKey} onChange={setSearchKey} />
       </PageHeader>
