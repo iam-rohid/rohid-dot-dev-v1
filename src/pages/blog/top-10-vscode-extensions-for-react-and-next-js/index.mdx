@@ -1,4 +1,8 @@
 import BlogLayout from "@src/components/layouts/BlogLayout";
+import meta from "./index.ts";
+export default ({ children }) => (
+  <BlogLayout meta={meta}>{children}</BlogLayout>
+);
 
 ## What will be covered here?
 
@@ -102,5 +106,3 @@ This plugin [attempts](https://marketplace.visualstudio.com/items?itemName=Edit
 [Install It](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 
 So these are the top 10 vs code extensions for React developers. Hope this article helps you with finding some best extensions for your React application development. These extensions can increase your productivity. Let us know if there are other extensions that you use in your daily life for React development. We love to use them as well. Goodbye for now, see you soon 😊
-
-export default ({ children }) => <BlogLayout>{children}</BlogLayout>;

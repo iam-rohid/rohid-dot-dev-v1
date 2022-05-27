@@ -1,4 +1,8 @@
 import BlogLayout from "@src/components/layouts/BlogLayout";
+import meta from "./index.ts";
+export default ({ children }) => (
+  <BlogLayout meta={meta}>{children}</BlogLayout>
+);
 
 ![React + Tailwindcss + TypeScript + Vite Starter Template File Structure](https://github.com/rohid-hub/react-tailwindcss-typescript-vite-template/raw/main/public/react-tailwindcss-typescript-vite-template.png)
 
@@ -47,5 +51,3 @@ If this template helps you then please don't forget to give this repo a star ☺
 Thank you
 
 [Github Repo](https://github.com/rohid-hub/react-tailwindcss-typescript-vite-template)
-
-export default ({ children }) => <BlogLayout>{children}</BlogLayout>;

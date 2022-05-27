@@ -13,7 +13,6 @@ export const getAllPosts = async (): Promise<Post[]> => {
     .sort((a, b) => {
       const aDate = new Date(a.createdAt);
       const bDate = new Date(b.createdAt);
-      console.log({ aDate, bDate });
       if (aDate > bDate) return -1;
       if (aDate < bDate) return 1;
       return 0;
