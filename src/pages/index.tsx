@@ -107,7 +107,7 @@ const HomePage: NextPage<HomePageProps> = ({
           </div>
         </SectionTitle>
 
-        <div className="my-16 flex flex-col gap-16 md:flex-row md:gap-4">
+        <div className="block gap-4 md:flex">
           <div className="flex-1">
             <SectionTitle
               title="Recent Posts"
@@ -116,6 +116,7 @@ const HomePage: NextPage<HomePageProps> = ({
                 text: "All Posts",
                 href: "/blog",
               }}
+              className="my-16"
             >
               <div className="grid grid-cols-1 gap-6">
                 {recentPosts.map((post) => (
@@ -125,46 +126,48 @@ const HomePage: NextPage<HomePageProps> = ({
             </SectionTitle>
           </div>
 
-          <aside className="w-full md:max-w-[260px] lg:max-w-[320px]">
-            <div className="grid w-full grid-cols-1 gap-16 sm:grid-cols-2 sm:gap-6 md:grid-cols-1 md:gap-16">
-              <SectionTitle title="Featured Tags" id="top-tags">
-                <ul className="flex w-full flex-wrap gap-2">
-                  {featuredTags.map(({ slug, name }) => (
-                    <li key={slug}>
-                      <Link href={`/tags/${slug}`}>
-                        <a className="relative z-10 inline-block rounded-lg bg-gray-100 px-2 py-1 text-gray-600 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-300 dark:hover:text-gray-100">
-                          {name}
-                        </a>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </SectionTitle>
-
-              <SectionTitle title="Popular Posts" id="popular-posts">
-                <div className="grid grid-cols-1 gap-6">
-                  {popularPosts.map((post, i) => (
-                    <Link href={`/blog/${post.slug}`} key={post.slug}>
-                      <a className="flex">
-                        <p className="w-8 text-2xl font-bold text-gray-200 dark:text-gray-600">
-                          {i}
-                        </p>
-                        <div>
-                          <h3 className="flex-1 text-lg font-medium underline-offset-2 hover:underline">
-                            {post.title}
-                          </h3>
-                          <div className="inline-flex items-center gap-4 text-gray-600 dark:text-gray-400">
-                            <span>
-                              {(post.views || 0).toLocaleString()} views
-                            </span>
-                          </div>
-                        </div>
+          <aside className="w-full md:max-w-[220px] lg:max-w-[260px]">
+            <SectionTitle title="Featured Tags" id="top-tags" className="my-16">
+              <ul className="flex w-full flex-wrap gap-2">
+                {featuredTags.map(({ slug, name }) => (
+                  <li key={slug}>
+                    <Link href={`/tags/${slug}`}>
+                      <a className="relative z-10 inline-block rounded-lg bg-gray-100 px-2 py-1 text-sm text-gray-600 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-300 dark:hover:text-gray-100">
+                        {name}
                       </a>
                     </Link>
-                  ))}
-                </div>
-              </SectionTitle>
-            </div>
+                  </li>
+                ))}
+              </ul>
+            </SectionTitle>
+
+            <SectionTitle
+              title="Popular Posts"
+              id="popular-posts"
+              className="my-16"
+            >
+              <div className="grid grid-cols-1 gap-6">
+                {popularPosts.map((post, i) => (
+                  <Link href={`/blog/${post.slug}`} key={post.slug}>
+                    <a className="group flex gap-2">
+                      <p className="w-8 text-2xl font-bold text-gray-200 dark:text-gray-600">
+                        {i}
+                      </p>
+                      <div>
+                        <h3 className="flex-1 font-medium underline-offset-2 underline-offset-2 group-hover:underline">
+                          {post.title}
+                        </h3>
+                        <div className="inline-flex items-center gap-4 text-gray-600 dark:text-gray-400">
+                          <span>
+                            {(post.views || 0).toLocaleString()} views
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </Link>
+                ))}
+              </div>
+            </SectionTitle>
           </aside>
         </div>
       </div>
@@ -175,10 +178,11 @@ const HomePage: NextPage<HomePageProps> = ({
 export default HomePage;
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
-  const posts = await getAllPosts();
-  const recentPosts = posts.slice(0, 10);
-  const featuredPosts = posts.filter((post) => post.isFeatured).slice(0, 3);
-  const popularPosts = posts
+  const recentPosts = (await getAllPosts()).slice(0, 10);
+  const featuredPosts = (await getAllPosts())
+    .filter((post) => post.isFeatured)
+    .slice(0, 3);
+  const popularPosts = (await getAllPosts())
     .sort((a, b) => (a.views > b.views ? -1 : 1))
     .slice(0, 5);
 

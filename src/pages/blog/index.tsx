@@ -70,7 +70,7 @@ export default BlogPage;
 
 export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
   const allPosts = await getAllPosts();
-  const popularPosts = allPosts
+  const popularPosts = (await getAllPosts())
     .sort((a, b) => (a.views > b.views ? -1 : 1))
     .slice(0, 5);
 
