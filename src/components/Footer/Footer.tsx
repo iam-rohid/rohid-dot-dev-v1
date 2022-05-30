@@ -32,7 +32,7 @@ const socialLinks = [
 const Footer = () => {
   return (
     <footer>
-      <div className="mx-auto w-full max-w-4xl space-y-8 py-8 px-4">
+      <div className="mx-auto w-full max-w-5xl space-y-8 py-8 px-4">
         <div className="grid grid-cols-3 gap-6 lg:grid-cols-5">
           <div className="col-span-3 lg:col-span-2">
             <h3 className="mb-2 text-3xl font-medium">

@@ -26,7 +26,7 @@ const BlogPage = ({ allPosts, popularPosts }: BlogPageProps) => {
   }, [searchKey, allPosts]);
 
   return (
-    <div className="mx-auto mb-2 max-w-4xl px-4">
+    <div className="mx-auto mb-2 max-w-5xl px-4">
       <PageHeader title="Blog">
         <SearchBar value={searchKey} onChange={setSearchKey} />
       </PageHeader>

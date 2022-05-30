@@ -94,7 +94,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="mx-auto flex h-14 max-w-4xl items-center justify-between gap-6 px-4">
+      <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-6 px-4">
         <button
           aria-label="Toggle theme button for this page"
           onClick={onMenuClick}

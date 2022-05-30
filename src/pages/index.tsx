@@ -31,7 +31,7 @@ const HomePage: NextPage<HomePageProps> = ({
       <Head>
         <title>Home</title>
       </Head>
-      <div className="mx-auto w-full max-w-4xl px-4">
+      <div className="mx-auto w-full max-w-5xl px-4">
         <section className="my-16">
           <div className="flex flex-col-reverse items-center gap-16 md:flex-row">
             <div className="flex-1 text-center md:text-left">
@@ -154,7 +154,7 @@ const HomePage: NextPage<HomePageProps> = ({
                         {i}
                       </p>
                       <div>
-                        <h3 className="flex-1 font-medium underline-offset-2 underline-offset-2 group-hover:underline">
+                        <h3 className="flex-1 font-medium underline-offset-2 group-hover:underline">
                           {post.title}
                         </h3>
                         <div className="inline-flex items-center gap-4 text-gray-600 dark:text-gray-400">
