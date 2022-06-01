@@ -15,12 +15,13 @@ export type Post = {
 export type Project = {
   slug: string;
   name: string;
-  description: string;
+  description?: string;
   tags: string[];
   isFeatured?: boolean;
   url?: string;
   repo?: string;
   images: (string | StaticImageData)[];
+  date: string;
 };
 
 export type Tag = {

@@ -94,6 +94,11 @@ export const tags: Tag[] = [
   {
     slug: "ios",
     name: "iOS",
+    isFeatured: true,
+  },
+  {
+    slug: "expo",
+    name: "Expo",
     isFeatured: false,
   },
   {

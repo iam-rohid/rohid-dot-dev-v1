@@ -20,7 +20,7 @@ const ProjectsPage = ({ allProjects, featuredProjects }: ProjectsPageProps) => {
     if (keys.length === 0) return [];
     return allProjects.filter((post) => {
       const title = post.name.toLowerCase();
-      const content = post.description.toLowerCase();
+      const content = (post.description || "").toLowerCase();
       return keys.every((key) => title.includes(key) || content.includes(key));
     });
   }, [searchKey, allProjects]);
@@ -65,7 +65,9 @@ const ProjectsGird = ({ projects }: { projects: Project[] }) => {
 };
 
 export const getStaticProps: GetStaticProps<ProjectsPageProps> = () => {
-  const allProjects = projects.sort((a, b) => (a.name > b.name ? 1 : -1));
+  const allProjects = projects.sort((a, b) =>
+    Date.parse(a.date) > Date.parse(b.date) ? -1 : 1
+  );
   const featuredProjects = allProjects.filter((post) => post.isFeatured);
 
   return {

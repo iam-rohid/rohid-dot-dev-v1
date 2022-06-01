@@ -193,6 +193,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
       popularPosts,
       featuredProjects: projects
         .filter((project) => project.isFeatured)
+        .sort((a, b) => (Date.parse(a.date) > Date.parse(b.date) ? -1 : 1))
         .slice(0, 3),
       featuredTags: tags
         .filter((tag) => tag.isFeatured)
