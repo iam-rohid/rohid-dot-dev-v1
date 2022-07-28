@@ -6,9 +6,9 @@ import React from "react";
 const AboutMe = (props: { data: IAbout }) => {
   const { data } = props;
   return (
-    <section className="my-32">
+    <section className="my-48">
       <div className="flex flex-col-reverse items-center gap-16 md:flex-row">
-        <div className="flex-1 text-center md:text-left">
+        <div className="flex flex-1 flex-col items-center text-center md:items-start md:text-left">
           <h1 className="mb-1 text-4xl font-black">{data.title}</h1>
           <p className="mb-3 text-lg">{data.subTitle}</p>
           <p className="text-gray-600 dark:text-gray-300">{data.description}</p>

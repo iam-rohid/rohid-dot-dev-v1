@@ -32,7 +32,7 @@ const socialLinks = [
 const Footer = () => {
   return (
     <footer>
-      <div className="mx-auto w-full max-w-5xl space-y-8 py-8 px-4">
+      <div className="container mx-auto w-full space-y-8 py-16 px-4 xl:max-w-5xl">
         <div className="grid grid-cols-3 gap-6 lg:grid-cols-5">
           <div className="col-span-3 lg:col-span-2">
             <h3 className="mb-2 text-3xl font-medium">
@@ -125,9 +125,9 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center gap-2 text-gray-600 dark:text-gray-300 md:flex-row md:gap-8">
-          © 2022 rohid.dev. All rights reserved.
-        </div>
+      </div>
+      <div className="py-8 text-center text-gray-600 dark:text-gray-400">
+        © 2022 rohid.dev. All rights reserved.
       </div>
     </footer>
   );

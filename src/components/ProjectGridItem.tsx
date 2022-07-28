@@ -9,7 +9,6 @@ const ProjectGridItem = ({
 }: {
   project: IProject & {
     tags: ITag[];
-    category: ICategory;
   };
 }) => {
   return (

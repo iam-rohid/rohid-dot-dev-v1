@@ -14,7 +14,7 @@ const BlogLayout = ({ children, meta }: BlogLayoutProps) => {
   const [postTags, setPostTags] = useState<Tag[]>([]);
 
   return (
-    <div className="mx-auto my-16 w-full max-w-5xl px-4">
+    <div className="container mx-auto my-16 w-full px-4 xl:max-w-5xl">
       <h1 className="mb-4 text-4xl font-black leading-tight md:text-5xl">
         {post.title}
       </h1>

@@ -14,7 +14,7 @@ const ProjectsPage = (props: ProjectsPageProps) => {
   const { featuredProjects, projects } = props;
 
   return (
-    <div className="mx-auto mb-2 max-w-5xl px-4">
+    <div className="container mx-auto mb-2 px-4 xl:max-w-5xl">
       <PageHeader title="Projects" />
       <ProjectsGrid title="Featured Projects" data={featuredProjects} />
       <ProjectsGrid title="All Projects" data={projects} />

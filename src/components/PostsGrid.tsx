@@ -7,9 +7,9 @@ const PostsGrid = (
   props: { data: IPost[] } & Omit<SectionProps, "children">
 ) => {
   const { data, ...sectionProps } = props;
-  if (!data) return null;
+  if (!data || data.length === 0) return null;
   return (
-    <SectionTitle {...sectionProps} className="my-32">
+    <SectionTitle {...sectionProps} className="my-16">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {data.map((post) => (
           <PostGridItem data={post} key={post.slug} />

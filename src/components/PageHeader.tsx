@@ -8,7 +8,7 @@ type PageHeader = {
 };
 const PageHeader = ({ title, description, children }: PageHeader) => {
   return (
-    <section className="my-32">
+    <section className="my-16">
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />

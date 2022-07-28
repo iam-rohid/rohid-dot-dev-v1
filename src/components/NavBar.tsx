@@ -12,6 +12,8 @@ import {
 } from "react-icons/md";
 import { useColorScheme } from "@src/contexts/ColorScheme";
 import useMediaQuery from "@src/hooks/useMediaQuery";
+import { LinkType } from "@src/types";
+import getNavigationLinks from "@src/utils/get-navigation-links";
 
 const menu = [
   {
@@ -68,7 +70,8 @@ const socialLinks = [
   },
 ];
 
-const Header = () => {
+const NavBar = () => {
+  const [links, setLinks] = useState<LinkType[]>([]);
   const [showMenuOnMobile, setShowMenuOnMobile] = useState(false);
   const { colorScheme, toggleTheme } = useColorScheme();
   const { asPath } = useRouter();
@@ -86,15 +89,24 @@ const Header = () => {
     }
   }, [isMobileDevice, showMenuOnMobile]);
 
+  const fetchLinks = useCallback(async () => {
+    const _links = await getNavigationLinks();
+    setLinks(_links);
+  }, []);
+
   useEffect(() => {
     if (!isMobileDevice && showMenuOnMobile) {
       setShowMenuOnMobile(false);
     }
   }, [isMobileDevice, showMenuOnMobile]);
 
+  useEffect(() => {
+    fetchLinks();
+  }, [fetchLinks]);
+
   return (
     <header>
-      <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-6 px-4">
+      <nav className="container mx-auto flex h-14 items-center justify-between gap-6 px-4 xl:max-w-5xl">
         <button
           aria-label="Toggle theme button for this page"
           onClick={onMenuClick}
@@ -104,23 +116,26 @@ const Header = () => {
           {showMenuOnMobile ? <MdClose /> : <MdMenu />}
         </button>
         <ul className="hidden items-center gap-6 md:flex">
-          {menu.map(({ label, href, id }) => (
-            <li key={id}>
-              <Link href={href}>
-                <a
-                  aria-label={`link to ${label} page`}
-                  title={label}
-                  className={classNames("flex items-center justify-center", {
-                    "text-gray-900 dark:text-gray-50": activePath === id,
-                    "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-50":
-                      activePath !== id,
-                  })}
-                >
-                  {label}
-                </a>
-              </Link>
-            </li>
-          ))}
+          {links.map(({ label, href }) => {
+            const isActive = activePath.startsWith(href);
+            return (
+              <li key={href}>
+                <Link href={href}>
+                  <a
+                    aria-label={`link to ${label} page`}
+                    title={label}
+                    className={classNames("flex items-center justify-center", {
+                      "text-gray-900 dark:text-gray-50": isActive,
+                      "text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-50":
+                        !isActive,
+                    })}
+                  >
+                    {label}
+                  </a>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
         <div className="flex-1" />
         <ul className="flex items-center justify-end gap-2">
@@ -186,4 +201,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default NavBar;

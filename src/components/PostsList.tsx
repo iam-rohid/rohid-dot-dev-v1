@@ -9,10 +9,10 @@ export type PostsListProps = Omit<SectionProps, "children"> & {
 const PostsList = (props: PostsListProps) => {
   const { data, ...sectionProps } = props;
 
-  if (!data) return null;
+  if (!data || data.length === 0) return null;
 
   return (
-    <SectionTitle {...sectionProps} className="my-32">
+    <SectionTitle {...sectionProps} className="my-16">
       <div className="space-y-8">
         {data.map((post) => (
           <PostListItem key={post.slug} post={post} />

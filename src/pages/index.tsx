@@ -61,7 +61,7 @@ const HomePage: NextPage<Props> = (props) => {
         <meta name="description" content={meta.description} />
         <meta name="keywords" content={meta.keywords.join(", ")} />
       </Head>
-      <div className="mx-auto w-full max-w-5xl px-4">
+      <div className="container mx-auto w-full px-4 xl:max-w-5xl">
         <AboutMe data={aboutMe} />
 
         <PostsGrid
@@ -102,7 +102,7 @@ export default HomePage;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const data = await sanityClient.fetch(
-    `*[_type == "siteSettings" && _id == $docId][0]{
+    /* groq */ `*[_type == "siteSettings" && _id == $docId][0]{
     ...,
     featuredProjects[]->{
       title,
@@ -141,7 +141,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     }
   );
   const recentPosts =
-    await sanityClient.fetch(`*[_type == "post" && publishedAt < now()] | order(publishedAt desc)[0..9]{
+    await sanityClient.fetch(/* groq */ `*[_type == "post" && publishedAt < now()] | order(publishedAt desc)[0..9]{
     "slug": slug.current,
     title,
     excerpt,

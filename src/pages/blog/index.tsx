@@ -14,7 +14,7 @@ const BlogPage = (props: Props) => {
   const { featuredPosts, posts } = props;
 
   return (
-    <div className="mx-auto mb-2 max-w-5xl px-4">
+    <div className="container mx-auto mb-2 px-4 xl:max-w-5xl">
       <PageHeader title="Blog" />
       <PostsGrid title="Featured Posts" data={featuredPosts} />
       <PostsList title="All Posts" data={posts} />
