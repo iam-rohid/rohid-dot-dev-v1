@@ -75,10 +75,6 @@ const NavBar = () => {
   const [showMenuOnMobile, setShowMenuOnMobile] = useState(false);
   const { colorScheme, toggleTheme } = useColorScheme();
   const { asPath } = useRouter();
-  const activePath = useMemo(() => {
-    const path = asPath.split("/")[1];
-    return path === "" ? "home" : path;
-  }, [asPath]);
   const isMobileDevice = useMediaQuery("(max-width: 768px)");
 
   const onMenuClick = useCallback(() => {
@@ -117,7 +113,7 @@ const NavBar = () => {
         </button>
         <ul className="hidden items-center gap-6 md:flex">
           {links.map(({ label, href }) => {
-            const isActive = activePath.startsWith(href);
+            const isActive = asPath.startsWith(href);
             return (
               <li key={href}>
                 <Link href={href}>
@@ -170,32 +166,54 @@ const NavBar = () => {
         </button>
       </nav>
       {showMenuOnMobile && (
-        <nav className="w-full p-4">
-          <ul>
-            {menu.map(({ label, href, id }) => (
-              <li key={id} className="h-full py-0.5">
-                <Link href={href}>
-                  <a
-                    aria-label={`link to ${label} page`}
-                    title={label}
-                    className={classNames(
-                      "flex items-center rounded-lg px-4 py-2.5",
-                      {
-                        "bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-50":
-                          activePath === id,
-                        "text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-50":
-                          activePath !== id,
-                      }
-                    )}
-                    onClick={() => setShowMenuOnMobile(false)}
-                  >
-                    {label}
-                  </a>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <>
+          <div
+            className="fixed inset-0 z-20 bg-black/50"
+            onClick={() => setShowMenuOnMobile(false)}
+          />
+          <aside className="fixed left-0 top-0 bottom-0 z-30 w-screen max-w-[320px] bg-white dark:bg-gray-900">
+            <div className="flex h-14 items-center gap-4 px-4">
+              <div className="flex-1"></div>
+              <div>
+                <button
+                  aria-label="Toggle theme button for this page"
+                  onClick={() => setShowMenuOnMobile(false)}
+                  className="flex h-10 w-10 items-center justify-center rounded-lg text-2xl text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100"
+                  title={`Toggle Theme (${colorScheme})`}
+                >
+                  <MdClose />
+                </button>
+              </div>
+            </div>
+            <ul className="p-4">
+              {links.map(({ label, href }) => {
+                const isActive = asPath.startsWith(href);
+                return (
+                  <li key={href} className="h-full py-0.5">
+                    <Link href={href}>
+                      <a
+                        aria-label={`link to ${label} page`}
+                        title={label}
+                        className={classNames(
+                          "flex items-center rounded-lg px-4 py-2.5",
+                          {
+                            "bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-50":
+                              isActive,
+                            "text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-50":
+                              !isActive,
+                          }
+                        )}
+                        onClick={() => setShowMenuOnMobile(false)}
+                      >
+                        {label}
+                      </a>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </aside>
+        </>
       )}
     </header>
   );

@@ -1,17 +1,18 @@
 import React from "react";
-import tags from "./tags.json";
 
 const TagsPage = () => {
   return (
     <div>
       <h1>Tags</h1>
       <ul>
-        {tags.map((tag) => (
+        {/* {tags.map((tag) => (
           <li key={tag.slug}>{tag.name}</li>
-        ))}
+        ))} */}
       </ul>
     </div>
   );
 };
 
 export default TagsPage;
+
+// TODO: Tags

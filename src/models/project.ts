@@ -1,4 +1,3 @@
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { IMeta } from "./meta";
 
 export type IProject = {

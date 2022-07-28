@@ -1,5 +1,5 @@
 import imageUrl from "@src/lib/imageUrl";
-import { IAbout } from "@src/models/IAbout";
+import { IAbout } from "@src/models";
 import Image from "next/image";
 import React from "react";
 
