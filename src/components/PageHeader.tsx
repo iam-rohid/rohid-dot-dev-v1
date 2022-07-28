@@ -4,11 +4,11 @@ import React, { ReactNode } from "react";
 type PageHeader = {
   title: string;
   description?: string;
-  children: ReactNode;
+  children?: ReactNode;
 };
 const PageHeader = ({ title, description, children }: PageHeader) => {
   return (
-    <section className="my-16">
+    <section className="my-32">
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
