@@ -1,11 +1,10 @@
-const withMDX = require("@next/mdx")({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [require("remark-prism")],
-    rehypePlugins: [],
-    providerImportSource: "@mdx-js/react",
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  images: {
+    domains: ["images.unsplash.com", "cdn.sanity.io"],
   },
-});
-module.exports = withMDX({
-  pageExtensions: ["tsx", "jsx", "md", "mdx"],
-});
+};
+
+module.exports = nextConfig;

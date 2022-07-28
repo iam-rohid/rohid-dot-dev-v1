@@ -11,8 +11,8 @@ export const getAllPosts = async (): Promise<Post[]> => {
   return posts
     .filter((post) => !post.isPrivate)
     .sort((a, b) => {
-      const aDate = Date.parse(a.createdAt);
-      const bDate = Date.parse(b.createdAt);
+      const aDate = Date.parse(a.publishedAt);
+      const bDate = Date.parse(b.publishedAt);
       if (aDate > bDate) return -1;
       if (aDate < bDate) return 1;
       return 0;

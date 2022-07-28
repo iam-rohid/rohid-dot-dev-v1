@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Post } from "@src/types";
 import { GetStaticProps } from "next";
-import BlogCard from "@src/components/Cards/BlogCard";
+import PostListItem from "@src/components/PostListItem";
 import PageHeader from "@src/components/PageHeader";
 import SearchBar from "@src/components/SearchBar";
 import SectionTitle from "@src/components/SectionTitle";
@@ -20,7 +20,7 @@ const BlogPage = ({ allPosts, popularPosts }: BlogPageProps) => {
     if (keys.length === 0) return [];
     return allPosts.filter((post) => {
       const title = post.title.toLowerCase();
-      const content = post.description.toLowerCase();
+      const content = post.excerpt.toLowerCase();
       return keys.every((key) => title.includes(key) || content.includes(key));
     });
   }, [searchKey, allPosts]);
@@ -37,7 +37,7 @@ const BlogPage = ({ allPosts, popularPosts }: BlogPageProps) => {
         >
           <div className="grid grid-cols-1 gap-6">
             {searchedPosts.map((post) => (
-              <BlogCard key={post.slug} post={post} />
+              <PostListItem key={post.slug} post={post} />
             ))}
           </div>
         </SectionTitle>
@@ -46,7 +46,7 @@ const BlogPage = ({ allPosts, popularPosts }: BlogPageProps) => {
           <SectionTitle className="my-16" title="Popular Posts">
             <div className="grid grid-cols-1 gap-6">
               {popularPosts?.map((post) => (
-                <BlogCard key={post.slug} post={post} />
+                <PostListItem key={post.slug} post={post} />
               ))}
             </div>
           </SectionTitle>
@@ -56,7 +56,7 @@ const BlogPage = ({ allPosts, popularPosts }: BlogPageProps) => {
           >
             <div className="grid grid-cols-1 gap-6">
               {allPosts?.map((post) => (
-                <BlogCard key={post.slug} post={post} />
+                <PostListItem key={post.slug} post={post} />
               ))}
             </div>
           </SectionTitle>

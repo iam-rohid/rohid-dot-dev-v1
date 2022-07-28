@@ -44,6 +44,9 @@ export const ColorSchemeProvider: FC<ColorSchemeProps> = ({
           case "dark":
             setColorScheme("light");
             break;
+          default:
+            setColorScheme("system");
+            break;
         }
       }
     },

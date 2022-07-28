@@ -1,4 +1,4 @@
-import ProjectCard from "@src/components/Cards/ProjectCard";
+import ProjectGridItem from "@src/components/ProjectGridItem";
 import PageHeader from "@src/components/PageHeader";
 import SearchBar from "@src/components/SearchBar";
 import SectionTitle from "@src/components/SectionTitle";
@@ -58,7 +58,7 @@ const ProjectsGird = ({ projects }: { projects: Project[] }) => {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {projects.map((project) => (
-        <ProjectCard key={project.slug} project={project} />
+        <ProjectGridItem key={project.slug} project={project} />
       ))}
     </div>
   );

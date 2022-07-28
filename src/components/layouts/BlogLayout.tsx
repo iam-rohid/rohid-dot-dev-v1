@@ -1,9 +1,7 @@
 import { Post, Tag } from "@src/types";
-import firebaseApp from "@src/utils/firebase";
-import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import moment from "moment";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { MdVisibility } from "react-icons/md";
 
 export type BlogLayoutProps = {
@@ -13,30 +11,7 @@ export type BlogLayoutProps = {
 
 const BlogLayout = ({ children, meta }: BlogLayoutProps) => {
   const [post, setPost] = useState(meta);
-  const [viewAdded, setViewAdded] = useState(false);
   const [postTags, setPostTags] = useState<Tag[]>([]);
-
-  useEffect(() => {
-    const loadPost = async () => {
-      const db = getFirestore(firebaseApp);
-      const docSnap = await getDoc(doc(db, "posts", meta.slug));
-
-      let newView = 1;
-      if (docSnap.exists()) {
-        newView = (docSnap.data()?.views || 0) + 1;
-      }
-
-      setPost({ ...meta, views: newView });
-      await setDoc(docSnap.ref, {
-        views: newView,
-      });
-    };
-
-    if (!viewAdded) {
-      loadPost();
-      setViewAdded(true);
-    }
-  }, [meta, viewAdded]);
 
   return (
     <div className="mx-auto my-16 w-full max-w-5xl px-4">
@@ -44,7 +19,7 @@ const BlogLayout = ({ children, meta }: BlogLayoutProps) => {
         {post.title}
       </h1>
       <div className="mb-4 inline-flex items-center gap-4 text-gray-600 dark:text-gray-400">
-        <span>{moment(post.createdAt).format("MMM DD, YYYY")}</span>
+        <span>{moment(post.publishedAt).format("MMM DD, YYYY")}</span>
         <span>{"·"}</span>
         <span className="inline-flex items-center gap-2">
           <MdVisibility />

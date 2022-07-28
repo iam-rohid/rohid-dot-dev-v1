@@ -2,14 +2,7 @@ import Link from "next/link";
 import React, { ReactNode } from "react";
 import { MdChevronRight } from "react-icons/md";
 
-const SectionTitle = ({
-  title,
-  id,
-  children,
-  description,
-  moreLink,
-  className,
-}: {
+export type SectionProps = {
   title: string;
   id?: string;
   description?: string;
@@ -19,12 +12,21 @@ const SectionTitle = ({
     text: string;
   };
   className?: string;
-}) => {
+};
+
+const SectionTitle = ({
+  title,
+  id,
+  children,
+  description,
+  moreLink,
+  className,
+}: SectionProps) => {
   return (
     <section id={id} className={className}>
       <div className="mb-6">
         <div className="flex items-center overflow-hidden">
-          <h2 className="flex-1 truncate text-2xl font-bold text-gray-900 dark:text-gray-50">
+          <h2 className="flex-1 truncate text-xl font-bold text-gray-900 dark:text-gray-50">
             {title}
           </h2>
           {moreLink && (
