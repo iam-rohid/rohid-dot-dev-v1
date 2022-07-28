@@ -23,10 +23,7 @@ const ProjectPage: NextPage<Props> = (props) => {
     <div className="container my-16 mx-auto px-4 xl:max-w-5xl">
       <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
         <Image
-          src={imageUrl(project.images[imageIndex])
-            .width(800)
-            .height(600)
-            .url()}
+          src={imageUrl(project.images[imageIndex]).url()}
           alt="image"
           layout="fill"
           objectFit="cover"
