@@ -3,7 +3,7 @@ import TableOfContent from "@src/components/TableOfContent";
 import { sanityClient } from "@src/lib/sanityClient";
 import { ICategory, IMeta, IPost, ITag } from "@src/models";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import React, { useEffect } from "react";
+import React from "react";
 
 type Props = {
   post: IPost;
@@ -14,11 +14,6 @@ type Props = {
 
 const BlogPage: NextPage<Props> = (props) => {
   const { category, meta, post, tags } = props;
-  useEffect(() => {
-    console.log(post.body);
-
-    return () => {};
-  }, [post.body]);
 
   return (
     <div className="container my-16 mx-auto px-4 xl:max-w-5xl">

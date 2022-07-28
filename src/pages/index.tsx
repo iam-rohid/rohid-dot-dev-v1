@@ -1,7 +1,6 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { sanityClient } from "@src/lib/sanityClient";
-import { useEffect } from "react";
 import { IAbout, ICategory, IMeta, IPost, IProject, ITag } from "@src/models";
 import AboutMe from "@src/components/AboutMe";
 import PostsGrid from "@src/components/PostsGrid";
@@ -27,10 +26,6 @@ type Props = {
 };
 
 const HomePage: NextPage<Props> = (props) => {
-  useEffect(() => {
-    console.log(props);
-  }, [props]);
-
   const {
     featuredPosts,
     featuredProjects,

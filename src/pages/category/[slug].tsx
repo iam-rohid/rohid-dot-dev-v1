@@ -4,7 +4,7 @@ import ProjectsGrid from "@src/components/ProjectsGrid";
 import { sanityClient } from "@src/lib/sanityClient";
 import { ICategory, IPost, IProject, ITag } from "@src/models";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import React, { useEffect } from "react";
+import React from "react";
 
 type Props = {
   category: ICategory;
@@ -13,10 +13,6 @@ type Props = {
 };
 
 const CategoryPage: NextPage<Props> = (props: Props) => {
-  useEffect(() => {
-    console.log(props);
-  }, [props]);
-
   const { category, posts, projects } = props;
   return (
     <div className="container mx-auto mb-2 px-4 xl:max-w-5xl">
