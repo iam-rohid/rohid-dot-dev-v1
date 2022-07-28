@@ -1,29 +1,15 @@
-import moment from "moment";
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import PostListItem from "@src/components/PostListItem";
-import Section from "@src/components/Section";
-import ProjectGridItem from "@src/components/ProjectGridItem";
 import { sanityClient } from "@src/lib/sanityClient";
 import { useEffect } from "react";
-import {
-  ICategory,
-  IMeta,
-  IPost,
-  IProject,
-  ISiteHeader,
-  ITag,
-} from "@src/models";
-import imageUrl from "@src/lib/imageUrl";
+import { IAbout, ICategory, IMeta, IPost, IProject, ITag } from "@src/models";
 import AboutMe from "@src/components/AboutMe";
 import PostsGrid from "@src/components/PostsGrid";
 import ProjectsGrid from "@src/components/ProjectsGrid";
 import PostsList from "@src/components/PostsList";
 
 type Props = {
-  header: ISiteHeader;
+  header: IAbout;
   featuredPosts: (IPost & {
     tags: ITag[];
     category: ICategory;

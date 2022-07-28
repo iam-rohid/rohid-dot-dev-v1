@@ -1,9 +1,9 @@
-import { Post } from "@src/types";
+import { IPost } from "@src/models";
 import moment from "moment";
 import Link from "next/link";
 import React from "react";
 
-const PostListItem = ({ post }: { post: Post }) => {
+const PostListItem = ({ post }: { post: IPost }) => {
   return (
     <article className="relative flex flex-col gap-2">
       <Link href={`/blog/${post.slug}`}>
