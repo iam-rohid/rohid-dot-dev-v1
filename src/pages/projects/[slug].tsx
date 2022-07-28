@@ -23,7 +23,7 @@ const ProjectPage: NextPage<Props> = (props) => {
 
   return (
     <div className="container my-16 mx-auto px-4 xl:max-w-5xl">
-      <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
+      <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl">
         <Image
           src={imageUrl(project.images[imageIndex]).url()}
           alt="image"
@@ -37,7 +37,7 @@ const ProjectPage: NextPage<Props> = (props) => {
             key={item._key}
             onClick={() => setImageIndex(index)}
             className={classNames(
-              "relative aspect-video overflow-hidden rounded-md ring-blue-500 ring-offset-4 ring-offset-white dark:ring-offset-gray-900",
+              "relative aspect-[3/2] overflow-hidden rounded-md ring-blue-500 ring-offset-4 ring-offset-white dark:ring-offset-gray-900",
               {
                 "ring-2": imageIndex === index,
               }

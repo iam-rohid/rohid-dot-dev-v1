@@ -19,7 +19,7 @@ const ProjectGridItem = ({
 
       <h3 className="px-2 text-xl font-medium">{project.title}</h3>
 
-      <div className="pointer-events-none relative aspect-video w-full overflow-hidden rounded-2xl">
+      <div className="pointer-events-none relative aspect-[3/2] w-full overflow-hidden rounded-2xl">
         <Image
           src={imageUrl(project.images[0]).url()}
           alt="Project"
