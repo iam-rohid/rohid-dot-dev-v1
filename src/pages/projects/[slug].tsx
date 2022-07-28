@@ -7,6 +7,8 @@ import classNames from "classnames";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { FaGithub } from "react-icons/fa";
+import { MdOpenInNew } from "react-icons/md";
 
 type Props = {
   project: IProject;
@@ -49,6 +51,28 @@ const ProjectPage: NextPage<Props> = (props) => {
             />
           </button>
         ))}
+      </div>
+      <div className="mt-8 flex items-center gap-2">
+        {!!project.repositoryUrl && (
+          <a
+            href={project.repositoryUrl}
+            className="flex h-10 items-center justify-center gap-2 rounded-full pl-2 pr-4 hover:bg-gray-100 dark:hover:bg-gray-800"
+            target={`_blank`}
+          >
+            <FaGithub className="text-2xl" />
+            <span>Repo</span>
+          </a>
+        )}
+        {!!project.visitUrl && (
+          <a
+            href={project.visitUrl}
+            className="flex h-10 items-center justify-center gap-2 rounded-full pl-2 pr-4 hover:bg-gray-100 dark:hover:bg-gray-800"
+            target={`_blank`}
+          >
+            <MdOpenInNew className="text-2xl" />
+            <span>Visit</span>
+          </a>
+        )}
       </div>
       <div className="flex gap-8">
         <article className="my-16 flex-1 overflow-hidden">
