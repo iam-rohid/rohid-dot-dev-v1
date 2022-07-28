@@ -8,6 +8,9 @@ export type PostsListProps = Omit<SectionProps, "children"> & {
 };
 const PostsList = (props: PostsListProps) => {
   const { data, ...sectionProps } = props;
+
+  if (!data) return null;
+
   return (
     <SectionTitle {...sectionProps} className="my-32">
       <div className="space-y-8">

@@ -12,6 +12,10 @@ export type ProjectsGridProps = Omit<SectionProps, "children"> & {
 
 const ProjectsGrid = (props: ProjectsGridProps) => {
   const { data, ...sectionProps } = props;
+  if (!data) {
+    return null;
+  }
+
   return (
     <SectionTitle {...sectionProps} className="my-32">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
