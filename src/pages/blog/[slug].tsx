@@ -29,7 +29,7 @@ const BlogPage: NextPage<Props> = (props) => {
           </div>
           <PortableText value={post.body} />
         </article>
-        <aside className="relative hidden w-72 md:block">
+        <aside className="relative hidden w-72 lg:block">
           <div className="sticky top-0">
             <TableOfContent value={post.body} />
           </div>

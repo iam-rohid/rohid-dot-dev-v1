@@ -6,7 +6,8 @@ export type IProject = {
   slug: string;
   visitUrl?: string;
   repositoryUrl?: string;
-  images: SanityImageSource[];
+  images: any[];
   publishedAt: string;
   meta?: IMeta;
+  body: any;
 };
