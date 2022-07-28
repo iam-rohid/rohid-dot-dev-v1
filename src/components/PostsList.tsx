@@ -1,7 +1,7 @@
 import { IPost } from "@src/models";
 import React from "react";
 import PostListItem from "./PostListItem";
-import SectionTitle, { SectionProps } from "./SectionTitle";
+import Section, { SectionProps } from "./Section";
 
 export type PostsListProps = Omit<SectionProps, "children"> & {
   data: IPost[];
@@ -12,13 +12,13 @@ const PostsList = (props: PostsListProps) => {
   if (!data || data.length === 0) return null;
 
   return (
-    <SectionTitle {...sectionProps} className="my-16">
+    <Section {...sectionProps} className="my-16">
       <div className="space-y-8">
         {data.map((post) => (
           <PostListItem key={post.slug} post={post} />
         ))}
       </div>
-    </SectionTitle>
+    </Section>
   );
 };
 

@@ -16,3 +16,9 @@
     @apply min-h-[calc(100vh-56px)];
   }
 }
+
+html {
+  scroll-padding-top: 2rem;
+  scroll-padding-bottom: 2rem;
+  scroll-behavior: smooth;
+}

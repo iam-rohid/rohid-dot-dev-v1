@@ -14,7 +14,7 @@ export type SectionProps = {
   className?: string;
 };
 
-const SectionTitle = ({
+const Section = ({
   title,
   id,
   children,
@@ -45,4 +45,4 @@ const SectionTitle = ({
   );
 };
 
-export default SectionTitle;
+export default Section;

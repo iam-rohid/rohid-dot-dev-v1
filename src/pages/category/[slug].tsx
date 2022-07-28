@@ -40,7 +40,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   );
 
   return {
-    paths: categories.map((category) => `/category/${category.slug}`),
+    paths: categories.map((item) => `/category/${item.slug}`),
     fallback: false,
   };
 };

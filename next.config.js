@@ -5,6 +5,11 @@ const nextConfig = {
   images: {
     domains: ["images.unsplash.com", "cdn.sanity.io"],
   },
+  experimental: {
+    images: {
+      layoutRaw: true,
+    },
+  },
 };
 
 module.exports = nextConfig;

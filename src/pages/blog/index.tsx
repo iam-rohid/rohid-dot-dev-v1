@@ -10,7 +10,7 @@ type Props = {
   posts: IPost[];
 };
 
-const BlogPage = (props: Props) => {
+const BlogListPage = (props: Props) => {
   const { featuredPosts, posts } = props;
 
   return (
@@ -22,7 +22,7 @@ const BlogPage = (props: Props) => {
   );
 };
 
-export default BlogPage;
+export default BlogListPage;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const posts =

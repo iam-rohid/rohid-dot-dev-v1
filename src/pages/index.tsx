@@ -4,7 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import PostListItem from "@src/components/PostListItem";
-import SectionTitle from "@src/components/SectionTitle";
+import Section from "@src/components/Section";
 import ProjectGridItem from "@src/components/ProjectGridItem";
 import { sanityClient } from "@src/lib/sanityClient";
 import { useEffect } from "react";

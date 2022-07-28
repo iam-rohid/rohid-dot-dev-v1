@@ -1,7 +1,7 @@
 import { IProject, ITag } from "@src/models";
 import React from "react";
 import ProjectGridItem from "./ProjectGridItem";
-import SectionTitle, { SectionProps } from "./SectionTitle";
+import Section, { SectionProps } from "./Section";
 
 export type ProjectsGridProps = Omit<SectionProps, "children"> & {
   data: (IProject & {
@@ -16,13 +16,13 @@ const ProjectsGrid = (props: ProjectsGridProps) => {
   }
 
   return (
-    <SectionTitle {...sectionProps} className="my-16">
+    <Section {...sectionProps} className="my-16">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {data.map((project) => (
           <ProjectGridItem key={project.slug} project={project} />
         ))}
       </div>
-    </SectionTitle>
+    </Section>
   );
 };
 
