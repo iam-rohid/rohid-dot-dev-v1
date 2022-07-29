@@ -17,7 +17,9 @@ const ProjectGridItem = ({
         <a className="absolute inset-0 rounded-xl" />
       </Link>
 
-      <h3 className="px-2 text-xl font-medium">{project.title}</h3>
+      <div className="flex-1">
+        <h3 className="px-2 text-xl font-medium">{project.title}</h3>
+      </div>
 
       <div className="pointer-events-none relative aspect-[3/2] w-full overflow-hidden rounded-2xl">
         <Image
@@ -34,7 +36,7 @@ const ProjectGridItem = ({
             return (
               <li key={tag.slug}>
                 <Link href={`/tags/${tag.slug}`}>
-                  <a className="relative z-10 inline-block rounded-md bg-gray-100 px-2 py-1 hover:text-gray-900 dark:bg-gray-800 dark:hover:text-gray-100">
+                  <a className="relative z-10 inline-block rounded-md bg-gray-100 px-1 py-0.5 text-sm hover:text-gray-900 dark:bg-gray-800 dark:hover:text-gray-100">
                     #{tag.slug}
                   </a>
                 </Link>
