@@ -1,24 +1,18 @@
+@import "./preview.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.dark {
-  color-scheme: dark;
-}
-
-@import "./preview.css";
-
-@layer base {
-  body {
-    @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100;
-  }
-  main {
-    @apply min-h-[calc(100vh-56px)];
-  }
+body {
+  @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100;
 }
 
 html {
   scroll-padding-top: 2rem;
   scroll-padding-bottom: 2rem;
   scroll-behavior: smooth;
+}
+
+.dark {
+  color-scheme: dark;
 }
