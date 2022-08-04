@@ -1,33 +1,6 @@
+import { socialLinks } from "@src/data/socialLinks";
 import Link from "next/link";
 import React from "react";
-import { FaTwitter, FaGithub, FaInstagram, FaPatreon } from "react-icons/fa";
-
-const socialLinks = [
-  {
-    id: "twitter",
-    label: "Twitter",
-    icon: <FaTwitter />,
-    href: "https://twitter.com/rohid_dev",
-  },
-  {
-    id: "githu",
-    label: "Github",
-    icon: <FaGithub />,
-    href: "https://github.com/rohid-dev",
-  },
-  {
-    id: "instagram",
-    label: "Instagram",
-    icon: <FaInstagram />,
-    href: "https://instagram.com/rohidisdev",
-  },
-  {
-    id: "patreon",
-    label: "Patreon",
-    icon: <FaPatreon />,
-    href: "https://patreon.com/rohid",
-  },
-];
 
 const Footer = () => {
   return (
