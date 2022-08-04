@@ -17,9 +17,11 @@ const SnippetPage = (props: Props) => {
         <article className="flex-1 overflow-hidden">
           <div className="mb-16">
             <h1 className="mb-4 text-4xl font-bold">{snippet.title}</h1>
-            <p className="text-lg font-medium text-gray-600 dark:text-gray-300">
-              {snippet.description}
-            </p>
+            {!!snippet.description && (
+              <p className="text-lg font-medium text-gray-600 dark:text-gray-300">
+                {snippet.description}
+              </p>
+            )}
           </div>
           <div className="space-y-8">
             {snippet.files.map((file) => (
