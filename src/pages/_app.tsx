@@ -4,6 +4,8 @@ import Footer from "@src/components/Footer";
 import NavBar from "@src/components/NavBar";
 import { ColorSchemeProvider } from "@src/contexts/ColorScheme";
 import "@src/styles/globals.css";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@src/lib/queryClient";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -11,13 +13,15 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>Rohid</title>
       </Head>
-      <ColorSchemeProvider>
-        <NavBar />
-        <main>
-          <Component {...pageProps} />
-        </main>
-        <Footer />
-      </ColorSchemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ColorSchemeProvider>
+          <NavBar />
+          <main>
+            <Component {...pageProps} />
+          </main>
+          <Footer />
+        </ColorSchemeProvider>
+      </QueryClientProvider>
     </>
   );
 }

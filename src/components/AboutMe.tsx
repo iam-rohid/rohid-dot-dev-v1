@@ -1,6 +1,7 @@
 import imageUrl from "@src/lib/imageUrl";
 import { IAbout } from "@src/models";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const AboutMe = (props: { data: IAbout }) => {
@@ -12,12 +13,11 @@ const AboutMe = (props: { data: IAbout }) => {
           <h1 className="mb-1 text-4xl font-black">{data.title}</h1>
           <p className="mb-3 text-lg">{data.subTitle}</p>
           <p className="text-gray-600 dark:text-gray-300">{data.description}</p>
-          <a
-            href="#"
-            className="mt-8 flex h-12 w-fit items-center justify-center rounded-md bg-gray-900 px-8 text-lg font-medium text-gray-50 dark:bg-gray-50 dark:text-gray-900"
-          >
-            Contact Me
-          </a>
+          <Link href="/contact">
+            <a className="mt-8 flex h-12 w-fit items-center justify-center rounded-md bg-gray-900 px-8 text-lg font-medium text-gray-50 dark:bg-gray-50 dark:text-gray-900">
+              Contact Me
+            </a>
+          </Link>
         </div>
         <div className="relative h-48 w-48 overflow-hidden rounded-full">
           <Image

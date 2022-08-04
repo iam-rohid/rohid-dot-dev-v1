@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FaTwitter, FaInstagram, FaGithub, FaPatreon } from "react-icons/fa";
 import {
   MdLightMode,
@@ -13,35 +13,9 @@ import {
 import { useColorScheme } from "@src/contexts/ColorScheme";
 import useMediaQuery from "@src/hooks/useMediaQuery";
 import { LinkType } from "@src/types";
-import getNavigationLinks from "@src/utils/get-navigation-links";
-
-const menu = [
-  {
-    id: "home",
-    label: "Home",
-    href: "/",
-  },
-  {
-    id: "blog",
-    label: "Blog",
-    href: "/blog",
-  },
-  {
-    id: "projects",
-    label: "Projects",
-    href: "/projects",
-  },
-  // {
-  //   id: "daily-logs",
-  //   label: "Daily Logs",
-  //   href: "/daily-logs",
-  // },
-  // {
-  //   id: "snippets",
-  //   label: "Snippets",
-  //   href: "/snippets",
-  // },
-];
+import getNavigationLinks, {
+  defaultLinks,
+} from "@src/utils/get-navigation-links";
 
 const socialLinks = [
   {
@@ -71,7 +45,7 @@ const socialLinks = [
 ];
 
 const NavBar = () => {
-  const [links, setLinks] = useState<LinkType[]>([]);
+  const [links, setLinks] = useState<LinkType[]>(defaultLinks);
   const [showMenuOnMobile, setShowMenuOnMobile] = useState(false);
   const { colorScheme, toggleTheme } = useColorScheme();
   const { asPath } = useRouter();
@@ -113,7 +87,7 @@ const NavBar = () => {
         </button>
         <ul className="hidden items-center gap-6 md:flex">
           {links.map(({ label, href }) => {
-            const isActive = asPath.startsWith(href);
+            const isActive = asPath === href;
             return (
               <li key={href}>
                 <Link href={href}>
@@ -187,7 +161,7 @@ const NavBar = () => {
             </div>
             <ul className="p-4">
               {links.map(({ label, href }) => {
-                const isActive = asPath.startsWith(href);
+                const isActive = asPath === href;
                 return (
                   <li key={href} className="h-full py-0.5">
                     <Link href={href}>
