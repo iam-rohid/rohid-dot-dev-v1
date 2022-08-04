@@ -26,7 +26,7 @@ export default BlogListPage;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const posts =
-    await sanityClient.fetch(`*[_type == "post"] | order(publishedAt desc, title asc){
+    await sanityClient.fetch(`*[_type == "post" && publishedAt < now()] | order(publishedAt desc, title asc){
     "slug": slug.current,
     title,
     excerpt,
